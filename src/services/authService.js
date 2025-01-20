@@ -1,38 +1,85 @@
 // src/services/authService.js
 
-// Use the `VITE_BACK_END_SERVER_URL` environment variable to set the base URL.
-// Note the `/auth` path added to the server URL that forms the base URL for
-// all the requests in this service.
-const BASE_URL = `${import.meta.env.VITE_BACK_END_SERVER_URL}`;
+const BACKEND_URL = import.meta.env.VITE_BACKEND_SERVER_URL; 
 
-
-const signUp = async (formData) => {
+const signup = async (formData) => {
   try {
-    const res = await fetch(`${BASE_URL}/users/register/`, {
+    const res = await fetch(`${BACKEND_URL}/users/register/`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData),
     });
 
-    const data = await res.json();
-
-    if (data.err) {
-      throw new Error(data.err);
+    // Check if the response status is OK
+    if (!res.ok) {
+      const errorMessage = await res.text(); // Read the response body in case of error
+      throw new Error(errorMessage);
     }
 
-    if (data.token) {
-      localStorage.setItem('token', data.token);
-      return JSON.parse(atob(data.token.split('.')[1])).payload;
+    const json = await res.json();
+
+    if (json.access) {
+      localStorage.setItem('access', json.access); // Store the JWT token in localStorage
+
+      const user = json.user
+      return user;
     }
 
-    throw new Error('Invalid response from server');
+    if (json.err) {
+      throw new Error(json.err);
+    }
+    return json;
   } catch (err) {
     console.log(err);
-    throw new Error(err);
+    throw err;
   }
 };
 
-export {
-  signUp,
+// signin function
+const signin = async (user) => {
+  try {
+    const res = await fetch(`${BACKEND_URL}/users/login/`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(user),
+    });
+
+    // Check if the response status is OK
+    if (!res.ok) {
+      const errorMessage = await res.text();
+      throw new Error(errorMessage);
+    }
+
+    const json = await res.json();
+
+    if (json.error) {
+      throw new Error(json.error);
+    }
+
+    if (json.access) {
+      localStorage.setItem('access', json.access); // Store the JWT token in localStorage
+
+      const user = json.user
+      return user;
+    }
+  } catch (err) {
+    console.log(err);
+    throw err;
+  }
 };
+
+// getUser function
+const getUser = () => {
+  const access = localStorage.getItem('access');
+  if (!access) return null;
+  const user = JSON.parse(atob(access.split('.')[1]));
+  return user;
+};
+
+// signout function
+const signout = () => {
+  localStorage.removeItem('acces');
+};
+
+export { signup, signin, getUser, signout };
 
