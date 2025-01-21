@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import NavBar from './components/NavBar/NavBar';
 import SignupForm from './components/SignUpForm/SignUpForm';
@@ -7,6 +7,8 @@ import Dashboard from './components/Dashboard/Dashboard';
 import SigninForm from './components/SignInForm/SigninForm';
 import * as authService from '../src/services/authService';
 import { getUser } from '../src/services/authService';
+import MoviesList from './components/MoviesList/MoviesList';
+import * as movieService from './services/movieService';
 
 
 export const AuthedUserContext = createContext(null); // set the initial value of the context to null
@@ -21,19 +23,31 @@ const App = () => {
     }
   }, []);
 
-
   const handleSignout = () => {
-    authService.signout()
-    setUser(null)
-  }
-  
+    authService.signout();
+    setUser(null);
+  };
+
+const [movies, setMovies] = useState([]);
+  useEffect(() => {
+    const fetchMovies = async () => {
+      const movies = await movieService.index();
+      setMovies(movies);
+    };
+    fetchMovies();
+  }, []);
+
+
 
   return (
     <AuthedUserContext.Provider value={user}>
       <NavBar handleSignout={handleSignout} />
       <Routes>
         {user ? (
-          <Route path="/" element={<Dashboard />} />
+          <>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/movies" element={<MoviesList movies={movies} />} />
+          </>
         ) : (
           <Route path="/" element={<Landing />} />
         )}
