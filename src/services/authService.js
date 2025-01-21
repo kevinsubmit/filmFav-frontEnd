@@ -57,8 +57,9 @@ const signin = async (user) => {
     }
 
     if (json.access) {
+      const username = json.user.username
       localStorage.setItem('access', json.access); // Store the JWT token in localStorage
-      localStorage.setItem('user', json.user); // Store the JWT token in localStorage
+      localStorage.setItem('user', username); // Store the JWT token in localStorage
 
       const user = json.user
       return user;
@@ -82,6 +83,7 @@ const getUser = () => {
 // signout function
 const signout = () => {
   localStorage.removeItem('access');
+  localStorage.removeItem('user');
 };
 
 export { signup, signin, getUser, signout };
