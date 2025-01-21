@@ -8,6 +8,7 @@ import SigninForm from './components/SignInForm/SigninForm';
 import * as authService from '../src/services/authService';
 import { getUser } from '../src/services/authService';
 import MoviesList from './components/MoviesList/MoviesList';
+import MovieDetails from './components/MovieDetails/MovieDetails';
 import * as movieService from './services/movieService';
 
 
@@ -47,6 +48,7 @@ const [movies, setMovies] = useState([]);
           <>
             <Route path="/" element={<Dashboard />} />
             <Route path="/movies" element={<MoviesList movies={movies} />} />
+            <Route path="/movies/:movieId" element={<MovieDetails />} />
           </>
         ) : (
           <Route path="/" element={<Landing />} />

@@ -1,0 +1,11 @@
+ nav {
+    color: black;
+ }
+
+ li {
+    list-style: none;
+ }
+
+ a:visited {
+    color: black;
+ }
