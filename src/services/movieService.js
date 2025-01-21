@@ -22,7 +22,24 @@ const show = async (movieId) => {
   }
 }
 
+const createReview = async (movieId, reviewData) => {
+  try {
+    const res = await fetch(`${BASE_URL}${movieId}api/reviews/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('access')}`,
+      },
+      body: JSON.stringify(reviewData),
+    });
+    return res.json();
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 export { 
   index,
   show,
+  createReview,
 };
