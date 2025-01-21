@@ -58,6 +58,7 @@ const signin = async (user) => {
 
     if (json.access) {
       localStorage.setItem('access', json.access); // Store the JWT token in localStorage
+      localStorage.setItem('user', json.user); // Store the JWT token in localStorage
 
       const user = json.user
       return user;
@@ -73,7 +74,7 @@ const getUser = () => {
     
   const access = localStorage.getItem('access');
   if (!access) return null;
-  const user = JSON.parse(atob(access.split('.')[1]));
+  const user = localStorage.getItem('user');
   return user;
   console.log(user)
 };
