@@ -70,15 +70,17 @@ const signin = async (user) => {
 
 // getUser function
 const getUser = () => {
+    
   const access = localStorage.getItem('access');
   if (!access) return null;
   const user = JSON.parse(atob(access.split('.')[1]));
   return user;
+  console.log(user)
 };
 
 // signout function
 const signout = () => {
-  localStorage.removeItem('acces');
+  localStorage.removeItem('access');
 };
 
 export { signup, signin, getUser, signout };
