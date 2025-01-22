@@ -38,8 +38,20 @@ const createReview = async (movieId, reviewData) => {
   }
 }
 
+const showReviews = async (movieId) => {
+  try {
+    const res = await fetch(`${BASE_URL}/reviews/movie/${movieId}/`, {
+      headers: { Authorization: `Bearer ${localStorage.getItem('access')}` },
+    });
+    return res.json();
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 export { 
   index,
   show,
   createReview,
+  showReviews,
 };
