@@ -72,9 +72,9 @@ const MovieDetails = () => {
               <article>
                 <header>
                   <p>
-                    {review.user
-                      ? `${review.user.username} posted on: ${new Date(
-                          review.createdAt
+                    {review.username
+                      ? `${review.username} posted on: ${new Date(
+                          review.created_at
                         ).toLocaleDateString()}`
                       : "Anonymous"}
                   </p>
