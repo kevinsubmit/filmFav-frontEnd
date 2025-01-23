@@ -4,7 +4,7 @@ import { AuthedUserContext } from '../../App';
 const Dashboard = () => {
     // const user = useContext(AuthedUserContext);
     const user = localStorage.getItem('user')
-    console.log(user)
+    
     
 
     return (

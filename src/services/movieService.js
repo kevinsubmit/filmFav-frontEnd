@@ -49,9 +49,39 @@ const showReviews = async (movieId) => {
   }
 }
 
+const createComment = async (reviewId, commentFormData) => {
+  try {
+    const res = await fetch(`${BASE_URL}/reviews/${reviewId}/comments/`, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('access')}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({...commentFormData, review: reviewId,}),
+    });
+    return res.json();
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const showComments = async (reviewId) => {
+  try {
+    const res = await fetch(`${BASE_URL}/reviews/${reviewId}/comments/`, {
+      headers: { Authorization: `Bearer ${localStorage.getItem('access')}` },
+    });
+    
+    return res.json();
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 export { 
   index,
   show,
   createReview,
   showReviews,
+  createComment,
+  showComments,
 };
