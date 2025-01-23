@@ -1,9 +1,12 @@
 import { useParams } from "react-router";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import * as movieService from "../../services/movieService";
 import ReviewForm from "../ReviewForm/ReviewForm";
+import { Link } from "react-router-dom";
+import { AuthedUserContext } from "../../App";
 
 const MovieDetails = () => {
+  const user = useContext(AuthedUserContext);
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
   const [reviews, setReviews] = useState(null);
@@ -13,7 +16,6 @@ const MovieDetails = () => {
     try {
       const movieData = await movieService.show(movieId);
       setMovie(movieData);
-      console.log(movieData);
     } catch (err) {
       console.error("Error fetching movie:", err);
     }
@@ -44,6 +46,16 @@ const MovieDetails = () => {
       console.error("Error adding review:", err);
     }
   };
+
+  const handleDeleteReview = async (reviewId) => {
+    try {
+      await movieService.deleteReview(reviewId);
+      setToggle((prev) => !prev); 
+    } catch (err) {
+      console.error("Error deleting review:", err);
+    }
+  };
+
 
   if (!movie) {
     return (
@@ -78,6 +90,12 @@ const MovieDetails = () => {
                         ).toLocaleDateString()}`
                       : "Anonymous"}
                   </p>
+                  {review.username === user && ( 
+                  <>
+                  <Link to={`/reviews/${review.id}/edit`}>Edit Review</Link>
+                  <button onClick={() => handleDeleteReview(review.id)}>Delete Review</button>
+                  </>
+                  )}
                 </header>
                 <p>{review.text}</p>
               </article>

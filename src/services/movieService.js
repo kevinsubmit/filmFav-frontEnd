@@ -49,9 +49,21 @@ const showReviews = async (movieId) => {
   }
 }
 
+const deleteReview = async (reviewId) => {
+  try {
+    await fetch(`${BASE_URL}/reviews/${reviewId}/`, {
+      method: 'DELETE',
+      headers: { Authorization: `Bearer ${localStorage.getItem('access')}` },
+    });
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 export { 
   index,
   show,
   createReview,
   showReviews,
+  deleteReview,
 };
