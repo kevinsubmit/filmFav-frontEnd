@@ -88,6 +88,15 @@ const MovieDetails = () => {
     }
   };
 
+  const handleDeleteComment = async (commentId) => {
+    try {
+      await movieService.deleteComment(commentId);
+      setToggle((prev) => !prev); 
+    } catch (err) {
+      console.error("Error deleting review:", err);
+    }
+  };
+
   if (!movie) {
     return (
       <main>
@@ -153,6 +162,11 @@ const MovieDetails = () => {
                       </p>
                     </header>
                     <p>{comment.text}</p>
+                    {comment.username === user && ( 
+                    <>
+                    <button onClick={() => handleDeleteComment(comment.id)}>Delete Comment</button>
+                    </>
+                    )}
                   </article>
                 ))}
               </section>

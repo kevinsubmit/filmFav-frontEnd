@@ -88,6 +88,17 @@ const showComments = async (reviewId) => {
   }
 }
 
+const deleteComment = async (commentId) => {
+  try {
+    await fetch(`${BASE_URL}/comments/${commentId}/`, {
+      method: 'DELETE',
+      headers: { Authorization: `Bearer ${localStorage.getItem('access')}` },
+    });
+  } catch (error) {
+    console.error('Error deleting a comment:', error);
+  }
+};
+
 export { 
   index,
   show,
@@ -96,4 +107,5 @@ export {
   deleteReview,
   createComment,
   showComments,
+  deleteComment,
 };
