@@ -4,6 +4,7 @@ import * as movieService from "../../services/movieService";
 import ReviewForm from "../ReviewForm/ReviewForm";
 import { Link } from "react-router-dom";
 import { AuthedUserContext } from "../../App";
+import "./MovieDetails.css";
 
 import CommentForm from "../CommentForm/CommentForm";
 
@@ -72,7 +73,7 @@ const MovieDetails = () => {
   const handleDeleteReview = async (reviewId) => {
     try {
       await movieService.deleteReview(reviewId);
-      setToggle((prev) => !prev); 
+      setToggle((prev) => !prev);
     } catch (err) {
       console.error("Error deleting review:", err);
     }
@@ -87,7 +88,6 @@ const MovieDetails = () => {
     }
   };
 
-
   const handleAddComment = async (reviewId, commentFormData) => {
     try {
       await movieService.createComment(reviewId, commentFormData);
@@ -100,7 +100,7 @@ const MovieDetails = () => {
   const handleDeleteComment = async (commentId) => {
     try {
       await movieService.deleteComment(commentId);
-      setToggle((prev) => !prev); 
+      setToggle((prev) => !prev);
     } catch (err) {
       console.error("Error deleting review:", err);
     }
@@ -116,73 +116,114 @@ const MovieDetails = () => {
   }
 
   return (
-    <main>
-      <h1>Movie Details</h1>
-      <li key={movie.id}>
-        <article>
-          <h2>{movie.title}</h2>
-          <img src={movie.poster_url} alt={`${movie.title} Poster`} />
-          <p>{movie.description}</p>
-        </article>
-        <section>
-          <h3>Reviews</h3>
-          <ReviewForm handleAddReview={handleAddReview} handleUpdateReview={handleUpdateReview} />
-          {!reviews?.length && <p>No reviews yet</p>}
+    <main key={movie.id}>
+      <div className="intro">
+        <img src={movie.poster_url} alt={`${movie.title} Poster`} />
+        <div className="movie-details">
+          <div className="movie-title">{movie.title}</div>
+          <div className="description">{movie.description}</div>
+          <div className="release-year">
+            Movie Released in {movie.year_made}
+          </div>
+          <div className="genres">
+            {movie.genres.map((genre) => (
+              <div key={genre.id} className="genre">
+                {" "}
+                {genre.name}{" "}
+              </div>
+            ))}
+          </div>
+          <div className="movie-rating">
+            {!reviews?.length ? (
+              <div>No reviews yet</div>
+            ) : (
+              <div>
+                FilmFav User Rating:{" "}
+                {(() => {
+                  let sum = 0;
+                  for (let i = 0; i < reviews.length; i++) {
+                    const rating = parseFloat(reviews[i].rating);
+                    sum += rating;
+                  }
+                  return (sum / reviews.length).toFixed(1);
+                })()}
+              </div>
+            )}
+            <div>Out of 5.0</div>
+          </div>
+        </div>
+      </div>
+      <div className="reviews">
+        <div className="reviews-title">Reviews</div>
+        
+          <ReviewForm
+            handleAddReview={handleAddReview}
+            handleUpdateReview={handleUpdateReview}
+          />
+          {!reviews?.length && <div>No reviews yet</div>}
           {reviews?.map((review, index) => (
-            <div key={`${review.id}-${index}`}>
-              <article>
-              <h3>Review </h3>
-                <header>
-                  <p>
+            <div key={`${review.id}-${index}`} className="reviews-comments">
+              <div className="review-content">
+                <div className="review-header">
+                  <div className="user-rating">
                     {review.username
-                      ? `${review.username} posted on: ${new Date(
-                          review.created_at
-                        ).toLocaleDateString()}`
+                      ? `${review.username} rated the movie a ${review.rating} out of 5.00`
                       : "Anonymous"}
-                  </p>
-                  {review.username === user && ( 
+                  </div>
+                  <div className="posted-date">
+                    {`Posted on: ${new Date(
+                      review.created_at
+                    ).toLocaleDateString()}`}
+                  </div>
+                </div>
+                {review.username === user && (
                   <>
-                  <Link to={`/movies/${movie.id}/reviews/${review.id}/edit`}>Edit Review</Link>
-                  <button onClick={() => handleDeleteReview(review.id)}>Delete Review</button>
+                    <Link to={`/movies/${movie.id}/reviews/${review.id}/edit`}>
+                      Edit Review
+                    </Link>
+                    <button onClick={() => handleDeleteReview(review.id)}>
+                      Delete Review
+                    </button>
                   </>
-                  )}
-                </header>
-                <p>{review.text}</p>
-              </article>
-              <section>
-                <h3>Comments</h3>
+                )}
+
+                <div>{review.text}</div>
+              </div>
+              <div>
+                <div>Comments</div>
                 <CommentForm
                   handleAddComment={(commentData) =>
                     handleAddComment(review.id, commentData)
                   }
                 />
                 {comments[review.id] && comments[review.id].length === 0 && (
-                  <p>There are no comments.</p>
+                  <div>There are no comments.</div>
                 )}
                 {comments[review.id]?.map((comment) => (
-                  <article key={`${comment.id}-${index}`}>
-                    <header>
-                      <p>
+                  <div key={`${comment.id}-${index}`}>
+                    <div>
+                      <div>
                         {comment.username
                           ? `${comment.username} posted on: ${new Date(
                               comment.created_at
                             ).toLocaleDateString()}`
                           : "Anonymous"}
-                      </p>
-                    </header>
-                    <p>{comment.text}</p>
-                    {comment.username === user && ( 
-                    <>
-                    <button onClick={() => handleDeleteComment(comment.id)}>Delete Comment</button>
-                    </>
+                      </div>
+                    </div>
+                    <div>{comment.text}</div>
+                    {comment.username === user && (
+                      <>
+                        <button onClick={() => handleDeleteComment(comment.id)}>
+                          Delete Comment
+                        </button>
+                      </>
                     )}
-                  </article>
+                  </div>
                 ))}
-              </section>
+              </div>
             </div>
           ))}
-        </section>
-      </li>
+      </div>
     </main>
   );
 };
