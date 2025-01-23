@@ -11,6 +11,20 @@ const WatchList = () => {
     const res = await mineService.getWatchList();
     setwatchList(res.movies);
   };
+ 
+
+    const removeFromMyWatchlist = async (movie_ids) => {
+      try {
+        const myWatchlistsData = await mineService.removeFromMyWatchlist(movie_ids);
+        if (myWatchlistsData) {
+          const movie_id = movie_ids[0];
+          const myNewWatchList = watchList.filter((movie) => movie.id !== movie_id);
+          setwatchList(myNewWatchList);
+        }
+      } catch (error) {
+        console.error("Error removeFromMyMovies:", error);
+      }
+    };
 
   return (
     <ul>
@@ -22,6 +36,11 @@ const WatchList = () => {
               <img src={movie.poster_url} alt="poster_img" />
               <p>{movie.description}</p>
               <Link to={`/movies/${movie.id}`}>View Details</Link>
+              <div>
+                <button onClick={() => removeFromMyWatchlist([movie.id])}>
+                remove From MyWatchlist
+                </button>
+              </div>
             </article>
           </li>
         ))

@@ -1,5 +1,5 @@
-import { Link } from "react-router";
-import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from "react-router";
+import React, { useState, useEffect } from "react";
 import * as mineService from "../../services/mineService";
 
 const MyMovies = () => {
@@ -12,6 +12,19 @@ const MyMovies = () => {
     setmyMovies(res.movies);
   };
 
+  const removeFromMyMovies = async (movie_ids) => {
+    try {
+      const myMoviesData = await mineService.removeFromMyMovies(movie_ids);
+      if (myMoviesData) {
+        const movie_id = movie_ids[0];
+        const myNewMovies = myMovies.filter((movie) => movie.id !== movie_id);
+        setmyMovies(myNewMovies);
+      }
+    } catch (error) {
+      console.error("Error removeFromMyMovies:", error);
+    }
+  };
+
   return (
     <ul>
       {myMovies.length > 0 ? (
@@ -22,6 +35,11 @@ const MyMovies = () => {
               <img src={movie.poster_url} alt="poster_img" />
               <p>{movie.description}</p>
               <Link to={`/movies/${movie.id}`}>View Details</Link>
+              <div>
+                <button onClick={() => removeFromMyMovies([movie.id])}>
+                  remove From MyMovies
+                </button>
+              </div>
             </article>
           </li>
         ))

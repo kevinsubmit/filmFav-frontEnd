@@ -1,6 +1,7 @@
 import { useParams } from "react-router";
 import { useState, useEffect, useContext } from "react";
 import * as movieService from "../../services/movieService";
+import * as mineService from "../../services/mineService";
 import ReviewForm from "../ReviewForm/ReviewForm";
 import { Link } from "react-router-dom";
 import { AuthedUserContext } from "../../App";
@@ -43,6 +44,24 @@ const MovieDetails = () => {
       console.error("Error fetching comments:", error);
     }
   };
+  const addToMyMovies = async (movie_ids) => {
+    try {
+      const myMoviesData = await mineService.addToMyMovies(movie_ids);
+      alert(myMoviesData.detail)
+      return;
+    } catch (error) {
+      console.error("Error addToMyMovies:", error);
+    }
+  };
+  const addToMyWatchlist = async (movie_ids) => {
+    try {
+      const myWatchlistData = await mineService.addToMyWatchlist(movie_ids);
+      alert(myWatchlistData.detail)
+      return;
+    } catch (error) {
+      console.error("Error addToMyMovies:", error);
+    }
+  };
 
   useEffect(() => {
     fetchMovie();
@@ -72,7 +91,7 @@ const MovieDetails = () => {
   const handleDeleteReview = async (reviewId) => {
     try {
       await movieService.deleteReview(reviewId);
-      setToggle((prev) => !prev); 
+      setToggle((prev) => !prev);
     } catch (err) {
       console.error("Error deleting review:", err);
     }
@@ -87,7 +106,6 @@ const MovieDetails = () => {
     }
   };
 
-
   const handleAddComment = async (reviewId, commentFormData) => {
     try {
       await movieService.createComment(reviewId, commentFormData);
@@ -100,7 +118,7 @@ const MovieDetails = () => {
   const handleDeleteComment = async (commentId) => {
     try {
       await movieService.deleteComment(commentId);
-      setToggle((prev) => !prev); 
+      setToggle((prev) => !prev);
     } catch (err) {
       console.error("Error deleting review:", err);
     }
@@ -123,15 +141,26 @@ const MovieDetails = () => {
           <h2>{movie.title}</h2>
           <img src={movie.poster_url} alt={`${movie.title} Poster`} />
           <p>{movie.description}</p>
+          <div>
+            <button onClick={() => addToMyMovies([movie.id])}>
+            mark it as myMovies
+            </button>
+            <button onClick={() => addToMyWatchlist([movie.id])}>
+              Add to my watchlist
+            </button>
+          </div>
         </article>
         <section>
           <h3>Reviews</h3>
-          <ReviewForm handleAddReview={handleAddReview} handleUpdateReview={handleUpdateReview} />
+          <ReviewForm
+            handleAddReview={handleAddReview}
+            handleUpdateReview={handleUpdateReview}
+          />
           {!reviews?.length && <p>No reviews yet</p>}
           {reviews?.map((review, index) => (
             <div key={`${review.id}-${index}`}>
               <article>
-              <h3>Review </h3>
+                <h3>Review </h3>
                 <header>
                   <p>
                     {review.username
@@ -140,11 +169,17 @@ const MovieDetails = () => {
                         ).toLocaleDateString()}`
                       : "Anonymous"}
                   </p>
-                  {review.username === user && ( 
-                  <>
-                  <Link to={`/movies/${movie.id}/reviews/${review.id}/edit`}>Edit Review</Link>
-                  <button onClick={() => handleDeleteReview(review.id)}>Delete Review</button>
-                  </>
+                  {review.username === user && (
+                    <>
+                      <Link
+                        to={`/movies/${movie.id}/reviews/${review.id}/edit`}
+                      >
+                        Edit Review
+                      </Link>
+                      <button onClick={() => handleDeleteReview(review.id)}>
+                        Delete Review
+                      </button>
+                    </>
                   )}
                 </header>
                 <p>{review.text}</p>
@@ -171,10 +206,12 @@ const MovieDetails = () => {
                       </p>
                     </header>
                     <p>{comment.text}</p>
-                    {comment.username === user && ( 
-                    <>
-                    <button onClick={() => handleDeleteComment(comment.id)}>Delete Comment</button>
-                    </>
+                    {comment.username === user && (
+                      <>
+                        <button onClick={() => handleDeleteComment(comment.id)}>
+                          Delete Comment
+                        </button>
+                      </>
                     )}
                   </article>
                 ))}

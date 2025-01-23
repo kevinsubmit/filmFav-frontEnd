@@ -10,7 +10,21 @@ const getMyMovies = async () => {
     console.log(error);
   }
 };
-
+const addToMyMovies = async (movie_ids,myMoviesData) => {
+  try {
+    const res = await fetch(`${BASE_URL}/mymovies/add/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('access')}`,
+      },
+      body: JSON.stringify({...myMoviesData,movie_ids}),
+    });
+    return res.json();
+  } catch (error) {
+    console.error(error);
+  }
+}
 const getWatchList = async () => {
   try {
     const res = await fetch(`${BASE_URL}/watchlist/`, {
@@ -21,28 +35,15 @@ const getWatchList = async () => {
     console.log(error);
   }
 };
-
-
-const show = async (movieId) => {
+const addToMyWatchlist = async (movie_ids,myWatchListData) => {
   try {
-    const res = await fetch(`${BASE_URL}/mymovies/${movieId}/`, {
-      headers: { Authorization: `Bearer ${localStorage.getItem('access')}` },
-    })
-    return res.json ()
-  } catch (error) {
-    console.error(error)
-  }
-}
-
-const createReview = async (movieId, reviewData) => {
-  try {
-    const res = await fetch(`${BASE_URL}/reviews/`, {
+    const res = await fetch(`${BASE_URL}/watchlist/add/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${localStorage.getItem('access')}`,
       },
-      body: JSON.stringify({...reviewData, movie: movieId}),
+      body: JSON.stringify({...myWatchListData,movie_ids}),
     });
     return res.json();
   } catch (error) {
@@ -50,80 +51,75 @@ const createReview = async (movieId, reviewData) => {
   }
 }
 
-const showReviews = async (movieId) => {
+const removeFromMyMovies = async (movie_ids,myMoviesData) => {
   try {
-    const res = await fetch(`${BASE_URL}/reviews/movie/${movieId}/`, {
-      headers: { Authorization: `Bearer ${localStorage.getItem('access')}` },
-    });
-    return res.json();
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-
-
-
-const deleteReview = async (reviewId) => {
-  try {
-    await fetch(`${BASE_URL}/reviews/${reviewId}/`, {
-      method: 'DELETE',
-      headers: { Authorization: `Bearer ${localStorage.getItem('access')}` },
-    });
-  } catch (error) {
-    console.error('Error deleting a review:', error);
-  }
-};
-
-const createComment = async (reviewId, commentFormData) => {
-  try {
-    const res = await fetch(`${BASE_URL}/reviews/${reviewId}/comments/`, {
+    const res = await fetch(`${BASE_URL}/mymovies/remove/`, {
       method: 'POST',
       headers: {
-        Authorization: `Bearer ${localStorage.getItem('access')}`,
         'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('access')}`,
       },
-      body: JSON.stringify({...commentFormData, review: reviewId,}),
+      body: JSON.stringify({...myMoviesData,movie_ids}),
     });
-    return res.json();
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-const showComments = async (reviewId) => {
-  try {
-    const res = await fetch(`${BASE_URL}/reviews/${reviewId}/comments/`, {
-      headers: { Authorization: `Bearer ${localStorage.getItem('access')}` },
-    });
+    if(res.ok){
+      const responseData = await res.json();
+      return responseData;
+    }else{
+      console.error("Request failed with status:", res.status);
+      return null;
+    }
     
-    return res.json();
   } catch (error) {
     console.error(error);
   }
-}
+};
 
-const deleteComment = async (commentId) => {
+const removeFromMyWatchlist = async (movie_ids,myWatchlistsData) => {
   try {
-    await fetch(`${BASE_URL}/comments/${commentId}/`, {
-      method: 'DELETE',
-      headers: { Authorization: `Bearer ${localStorage.getItem('access')}` },
+    const res = await fetch(`${BASE_URL}/watchlist/remove/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('access')}`,
+      },
+      body: JSON.stringify({...myWatchlistsData,movie_ids}),
     });
+    if(res.ok){
+      const responseData = await res.json();
+      return responseData;
+    }else{
+      console.error("Request failed with status:", res.status);
+      return null;
+    }
+    
   } catch (error) {
-    console.error('Error deleting a comment:', error);
+    console.error(error);
   }
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 export { 
   getMyMovies,
   getWatchList,
-
-
-  show,
-  createReview,
-  showReviews,
-  deleteReview,
-  createComment,
-  showComments,
-  deleteComment,
+  addToMyMovies,
+  addToMyWatchlist,
+  removeFromMyMovies,
+  removeFromMyWatchlist
 };
