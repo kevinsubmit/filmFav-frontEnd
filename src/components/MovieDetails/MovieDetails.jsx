@@ -5,11 +5,14 @@ import ReviewForm from "../ReviewForm/ReviewForm";
 import { Link } from "react-router-dom";
 import { AuthedUserContext } from "../../App";
 
+import CommentForm from "../CommentForm/CommentForm";
+
 const MovieDetails = () => {
   const user = useContext(AuthedUserContext);
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
   const [reviews, setReviews] = useState(null);
+  const [comments, setComments] = useState({});
   const [toggle, setToggle] = useState(false);
 
   const fetchMovie = async () => {
@@ -28,15 +31,34 @@ const MovieDetails = () => {
     } catch (error) {
       console.error("Error fetching reviews:", err);
     }
-  }
+  };
+  const fetchComments = async (reviewId) => {
+    try {
+      const commentsData = await movieService.showComments(reviewId);
+      setComments((prevComments) => ({
+        ...prevComments,
+        [reviewId]: commentsData, // Store comments for the specific reviewId
+      }));
+    } catch (error) {
+      console.error("Error fetching comments:", error);
+    }
+  };
 
   useEffect(() => {
     fetchMovie();
   }, [movieId]);
-  
+
   useEffect(() => {
     fetchReviews();
   }, [movieId, toggle]);
+
+  useEffect(() => {
+    if (reviews) {
+      reviews.forEach((review) => {
+        fetchComments(review.id); // Fetch comments for each review
+      });
+    }
+  }, [reviews, toggle]);
 
   const handleAddReview = async (reviewFormData) => {
     try {
@@ -56,6 +78,15 @@ const MovieDetails = () => {
     }
   };
 
+
+  const handleAddComment = async (reviewId, commentFormData) => {
+    try {
+      await movieService.createComment(reviewId, commentFormData);
+      setToggle((prev) => !prev);
+    } catch (err) {
+      console.error("Error adding comment:", err);
+    }
+  };
 
   if (!movie) {
     return (
@@ -78,10 +109,11 @@ const MovieDetails = () => {
         <section>
           <h3>Reviews</h3>
           <ReviewForm handleAddReview={handleAddReview} />
-          {!movie.reviews?.length && <p>No reviews yet</p>}
+          {!reviews?.length && <p>No reviews yet</p>}
           {reviews?.map((review, index) => (
             <div key={`${review.id}-${index}`}>
               <article>
+              <h3>Review </h3>
                 <header>
                   <p>
                     {review.username
@@ -99,6 +131,31 @@ const MovieDetails = () => {
                 </header>
                 <p>{review.text}</p>
               </article>
+              <section>
+                <h3>Comments</h3>
+                <CommentForm
+                  handleAddComment={(commentData) =>
+                    handleAddComment(review.id, commentData)
+                  }
+                />
+                {comments[review.id] && comments[review.id].length === 0 && (
+                  <p>There are no comments.</p>
+                )}
+                {comments[review.id]?.map((comment) => (
+                  <article key={`${comment.id}-${index}`}>
+                    <header>
+                      <p>
+                        {comment.username
+                          ? `${comment.username} posted on: ${new Date(
+                              comment.created_at
+                            ).toLocaleDateString()}`
+                          : "Anonymous"}
+                      </p>
+                    </header>
+                    <p>{comment.text}</p>
+                  </article>
+                ))}
+              </section>
             </div>
           ))}
         </section>
