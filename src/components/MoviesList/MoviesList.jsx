@@ -1,19 +1,19 @@
 
 import { Link } from 'react-router';
+import './MoviesList.css';
 
 const MoviesList = ({ movies }) => {
   const movieArray = Array.isArray(movies) ? movies : movies?.results || [];
 
   return (
-    <ul>
+    <main>
+    <ul className="movies-list">
       {movieArray.length > 0 ? (
         movieArray.map((movie) => (
-          <li key={movie.id}>
+          <li key={movie.id} className="movie-card">
             <article>
-              <h2>{movie.title}</h2>
-              <img src={movie.poster_url} alt="poster_img" />
-              <p>{movie.description}</p>
-              <Link to={`/movies/${movie.id}`}>View Details</Link>
+            <Link to={`/movies/${movie.id}`} className="movie-link">
+            <img src={movie.poster_url} alt="poster_img" className="img" /></Link>
             </article>
           </li>
         ))
@@ -21,6 +21,7 @@ const MoviesList = ({ movies }) => {
         <p>No movies available</p>
       )}
     </ul>
+    </main>
   );
 };
 
