@@ -11,7 +11,8 @@ import MoviesList from "./components/MoviesList/MoviesList";
 import MovieDetails from "./components/MovieDetails/MovieDetails";
 import * as movieService from "./services/movieService";
 import ReviewForm from "./components/ReviewForm/ReviewForm";
-
+import MyMovies from "./components/MyMovies/MyMovies";
+import WatchList from "./components/WatchList/WatchList";
 export const AuthedUserContext = createContext(null); // set the initial value of the context to null
 
 const App = () => {
@@ -49,6 +50,9 @@ const App = () => {
             <Route path="/movies/:movieId" element={<MovieDetails user={user} />}/>
             <Route path="/movies/:movieId/reviews/:reviewId/edit" element={<ReviewForm />}
             />
+            <Route path="/mymovies" element={<MyMovies />} />
+            <Route path="/watchlist" element={<WatchList />} />
+
           </>
         ) : (
           <Route path="/" element={<Landing />} />
