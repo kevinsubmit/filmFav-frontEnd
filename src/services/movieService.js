@@ -49,6 +49,12 @@ const showReviews = async (movieId) => {
   }
 }
 
+const deleteReview = async (reviewId) => {
+  try {
+    await fetch(`${BASE_URL}/reviews/${reviewId}/`, {
+      method: 'DELETE',
+      headers: { Authorization: `Bearer ${localStorage.getItem('access')}` },
+    });
 const createComment = async (reviewId, commentFormData) => {
   try {
     const res = await fetch(`${BASE_URL}/reviews/${reviewId}/comments/`, {
@@ -82,6 +88,7 @@ export {
   show,
   createReview,
   showReviews,
+  deleteReview,
   createComment,
   showComments,
 };

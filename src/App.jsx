@@ -48,7 +48,7 @@ const [movies, setMovies] = useState([]);
           <>
             <Route path="/" element={<Dashboard />} />
             <Route path="/movies" element={<MoviesList movies={movies} />} />
-            <Route path="/movies/:movieId" element={<MovieDetails />} />
+            <Route path="/movies/:movieId" element={<MovieDetails user={user} />} />
           </>
         ) : (
           <Route path="/" element={<Landing />} />

@@ -1,10 +1,14 @@
 import { useParams } from "react-router";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import * as movieService from "../../services/movieService";
 import ReviewForm from "../ReviewForm/ReviewForm";
+import { Link } from "react-router-dom";
+import { AuthedUserContext } from "../../App";
+
 import CommentForm from "../CommentForm/CommentForm";
 
 const MovieDetails = () => {
+  const user = useContext(AuthedUserContext);
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
   const [reviews, setReviews] = useState(null);
@@ -65,6 +69,16 @@ const MovieDetails = () => {
     }
   };
 
+  const handleDeleteReview = async (reviewId) => {
+    try {
+      await movieService.deleteReview(reviewId);
+      setToggle((prev) => !prev); 
+    } catch (err) {
+      console.error("Error deleting review:", err);
+    }
+  };
+
+
   const handleAddComment = async (reviewId, commentFormData) => {
     try {
       await movieService.createComment(reviewId, commentFormData);
@@ -108,6 +122,12 @@ const MovieDetails = () => {
                         ).toLocaleDateString()}`
                       : "Anonymous"}
                   </p>
+                  {review.username === user && ( 
+                  <>
+                  <Link to={`/reviews/${review.id}/edit`}>Edit Review</Link>
+                  <button onClick={() => handleDeleteReview(review.id)}>Delete Review</button>
+                  </>
+                  )}
                 </header>
                 <p>{review.text}</p>
               </article>
