@@ -55,6 +55,11 @@ const deleteReview = async (reviewId) => {
       method: 'DELETE',
       headers: { Authorization: `Bearer ${localStorage.getItem('access')}` },
     });
+  } catch (error) {
+    console.error('Error deleting a review:', error);
+  }
+};
+
 const createComment = async (reviewId, commentFormData) => {
   try {
     const res = await fetch(`${BASE_URL}/reviews/${reviewId}/comments/`, {
