@@ -49,6 +49,23 @@ const showReviews = async (movieId) => {
   }
 }
 
+const updateReview = async (reviewId, reviewData) => {
+  try {
+    const res = await fetch(`${BASE_URL}/reviews/${reviewId}/`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('access')}`,
+      },
+      body: JSON.stringify(reviewData),
+    });
+    return res.json();
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+
 const deleteReview = async (reviewId) => {
   try {
     await fetch(`${BASE_URL}/reviews/${reviewId}/`, {
@@ -104,6 +121,7 @@ export {
   show,
   createReview,
   showReviews,
+  updateReview,
   deleteReview,
   createComment,
   showComments,

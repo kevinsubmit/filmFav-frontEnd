@@ -1,7 +1,14 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router';
+import * as movieService from '../../services/movieService'
 
-const ReviewForm = ({ handleAddReview }) => {
+
+
+const ReviewForm = ({ handleAddReview}) => {
   const [formData, setFormData] = useState({ text: '', rating: 0 });
+  const { reviewId, movieId} = useParams()
+  const navigate = useNavigate()
+
 
   const handleChange = (evt) => {
     setFormData({ ...formData, [evt.target.name]: evt.target.value });
@@ -9,12 +16,19 @@ const ReviewForm = ({ handleAddReview }) => {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    handleAddReview(formData);
-    setFormData({ text: '', rating: 0 });
+    if (reviewId) {
+      movieService.updateReview(reviewId, formData)
+      navigate(`/movies/${movieId}`); 
+      
+    } else {
+      handleAddReview(formData);
+      setFormData({ text: '', rating: 0 }); 
+    }
   };
 
   return (
     <form onSubmit={handleSubmit}>
+      <h1>{reviewId ? "Edit Review" : "Create Review"}</h1>
       <label htmlFor='text-input'>Your Review:</label>
       <textarea
         required

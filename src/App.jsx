@@ -1,16 +1,16 @@
-import { createContext, useContext, useState, useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
-import NavBar from './components/NavBar/NavBar';
-import SignupForm from './components/SignUpForm/SignUpForm';
-import Landing from './components/Landing/Landing';
-import Dashboard from './components/Dashboard/Dashboard';
-import SigninForm from './components/SignInForm/SigninForm';
-import * as authService from '../src/services/authService';
-import { getUser } from '../src/services/authService';
-import MoviesList from './components/MoviesList/MoviesList';
-import MovieDetails from './components/MovieDetails/MovieDetails';
-import * as movieService from './services/movieService';
-
+import { createContext, useContext, useState, useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
+import NavBar from "./components/NavBar/NavBar";
+import SignupForm from "./components/SignUpForm/SignUpForm";
+import Landing from "./components/Landing/Landing";
+import Dashboard from "./components/Dashboard/Dashboard";
+import SigninForm from "./components/SignInForm/SigninForm";
+import * as authService from "../src/services/authService";
+import { getUser } from "../src/services/authService";
+import MoviesList from "./components/MoviesList/MoviesList";
+import MovieDetails from "./components/MovieDetails/MovieDetails";
+import * as movieService from "./services/movieService";
+import ReviewForm from "./components/ReviewForm/ReviewForm";
 
 export const AuthedUserContext = createContext(null); // set the initial value of the context to null
 
@@ -29,7 +29,7 @@ const App = () => {
     setUser(null);
   };
 
-const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState([]);
   useEffect(() => {
     const fetchMovies = async () => {
       const movies = await movieService.index();
@@ -37,8 +37,6 @@ const [movies, setMovies] = useState([]);
     };
     fetchMovies();
   }, []);
-
-
 
   return (
     <AuthedUserContext.Provider value={user}>
@@ -48,7 +46,9 @@ const [movies, setMovies] = useState([]);
           <>
             <Route path="/" element={<Dashboard />} />
             <Route path="/movies" element={<MoviesList movies={movies} />} />
-            <Route path="/movies/:movieId" element={<MovieDetails user={user} />} />
+            <Route path="/movies/:movieId" element={<MovieDetails user={user} />}/>
+            <Route path="/movies/:movieId/reviews/:reviewId/edit" element={<ReviewForm />}
+            />
           </>
         ) : (
           <Route path="/" element={<Landing />} />
