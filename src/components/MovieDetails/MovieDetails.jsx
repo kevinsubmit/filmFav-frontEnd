@@ -35,7 +35,6 @@ const MovieDetails = () => {
         ...prevComments,
         [reviewId]: commentsData, // Store comments for the specific reviewId
       }));
-      console.log(commentsData);
     } catch (error) {
       console.error("Error fetching comments:", error);
     }
@@ -100,6 +99,7 @@ const MovieDetails = () => {
           {reviews?.map((review, index) => (
             <div key={`${review.id}-${index}`}>
               <article>
+              <h3>Review </h3>
                 <header>
                   <p>
                     {review.username
