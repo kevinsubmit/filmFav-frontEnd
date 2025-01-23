@@ -78,6 +78,15 @@ const MovieDetails = () => {
     }
   };
 
+  const handleUpdateReview = async (reviewId, reviewFormData) => {
+    try {
+      await movieService.updateReview(reviewId, reviewFormData);
+      setToggle((prev) => !prev);
+    } catch (error) {
+      console.error("Error updating review:", error);
+    }
+  };
+
 
   const handleAddComment = async (reviewId, commentFormData) => {
     try {
@@ -85,6 +94,15 @@ const MovieDetails = () => {
       setToggle((prev) => !prev);
     } catch (err) {
       console.error("Error adding comment:", err);
+    }
+  };
+
+  const handleDeleteComment = async (commentId) => {
+    try {
+      await movieService.deleteComment(commentId);
+      setToggle((prev) => !prev); 
+    } catch (err) {
+      console.error("Error deleting review:", err);
     }
   };
 
@@ -108,7 +126,7 @@ const MovieDetails = () => {
         </article>
         <section>
           <h3>Reviews</h3>
-          <ReviewForm handleAddReview={handleAddReview} />
+          <ReviewForm handleAddReview={handleAddReview} handleUpdateReview={handleUpdateReview} />
           {!reviews?.length && <p>No reviews yet</p>}
           {reviews?.map((review, index) => (
             <div key={`${review.id}-${index}`}>
@@ -124,7 +142,7 @@ const MovieDetails = () => {
                   </p>
                   {review.username === user && ( 
                   <>
-                  <Link to={`/reviews/${review.id}/edit`}>Edit Review</Link>
+                  <Link to={`/movies/${movie.id}/reviews/${review.id}/edit`}>Edit Review</Link>
                   <button onClick={() => handleDeleteReview(review.id)}>Delete Review</button>
                   </>
                   )}
@@ -153,6 +171,11 @@ const MovieDetails = () => {
                       </p>
                     </header>
                     <p>{comment.text}</p>
+                    {comment.username === user && ( 
+                    <>
+                    <button onClick={() => handleDeleteComment(comment.id)}>Delete Comment</button>
+                    </>
+                    )}
                   </article>
                 ))}
               </section>

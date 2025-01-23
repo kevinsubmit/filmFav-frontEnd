@@ -49,12 +49,34 @@ const showReviews = async (movieId) => {
   }
 }
 
+const updateReview = async (reviewId, reviewData) => {
+  try {
+    const res = await fetch(`${BASE_URL}/reviews/${reviewId}/`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('access')}`,
+      },
+      body: JSON.stringify(reviewData),
+    });
+    return res.json();
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+
 const deleteReview = async (reviewId) => {
   try {
     await fetch(`${BASE_URL}/reviews/${reviewId}/`, {
       method: 'DELETE',
       headers: { Authorization: `Bearer ${localStorage.getItem('access')}` },
     });
+  } catch (error) {
+    console.error('Error deleting a review:', error);
+  }
+};
+
 const createComment = async (reviewId, commentFormData) => {
   try {
     const res = await fetch(`${BASE_URL}/reviews/${reviewId}/comments/`, {
@@ -83,12 +105,25 @@ const showComments = async (reviewId) => {
   }
 }
 
+const deleteComment = async (commentId) => {
+  try {
+    await fetch(`${BASE_URL}/comments/${commentId}/`, {
+      method: 'DELETE',
+      headers: { Authorization: `Bearer ${localStorage.getItem('access')}` },
+    });
+  } catch (error) {
+    console.error('Error deleting a comment:', error);
+  }
+};
+
 export { 
   index,
   show,
   createReview,
   showReviews,
+  updateReview,
   deleteReview,
   createComment,
   showComments,
+  deleteComment,
 };
