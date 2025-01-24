@@ -34,6 +34,7 @@ const Dashboard = ({ movies, reviews }) => {
           Review and rate the latest movies out now!
         </div>
       </div>
+      <div className="content-container">
       <div className="rated-content">
         <div className="rated-message">Top 5 Rated Movies Today</div>
         <div className="rated-list">
@@ -102,6 +103,7 @@ const Dashboard = ({ movies, reviews }) => {
             <div>No movies available</div>
           )}
         </div>
+      </div>
       </div>
     </main>
   );
