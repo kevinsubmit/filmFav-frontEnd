@@ -185,7 +185,7 @@ const MovieDetails = () => {
                       Delete Review
                     </button>
                   </>
-                )}
+                )} 
 
                 <div>{review.text}</div>
               </div>
