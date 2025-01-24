@@ -9,7 +9,6 @@ import * as authService from "../src/services/authService";
 import { getUser } from "../src/services/authService";
 import MoviesList from "./components/MoviesList/MoviesList";
 import MovieDetails from "./components/MovieDetails/MovieDetails";
-import * as movieService from "./services/movieService";
 import ReviewForm from "./components/ReviewForm/ReviewForm";
 import MyMovies from "./components/MyMovies/MyMovies";
 import WatchList from "./components/WatchList/WatchList";
@@ -30,14 +29,6 @@ const App = () => {
     setUser(null);
   };
 
-  const [movies, setMovies] = useState([]);
-  useEffect(() => {
-    const fetchMovies = async () => {
-      const movies = await movieService.index();
-      setMovies(movies);
-    };
-    fetchMovies();
-  }, []);
 
   const [reviews, setReviews] = useState([])
 
