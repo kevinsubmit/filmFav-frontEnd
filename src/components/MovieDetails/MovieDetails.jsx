@@ -135,7 +135,7 @@ const MovieDetails = () => {
           </div>
           <div className="movie-rating">
             {!reviews?.length ? (
-              <div>No reviews yet</div>
+              <div>No Reviews Yet</div>
             ) : (
               <div>
                 FilmFav User Rating:{" "}
@@ -145,11 +145,10 @@ const MovieDetails = () => {
                     const rating = parseFloat(reviews[i].rating);
                     sum += rating;
                   }
-                  return (sum / reviews.length).toFixed(1);
+                  return (sum / reviews.length).toFixed(2) + " Out of 5.00"
                 })()}
-              </div>
+                </div>
             )}
-            <div>Out of 5.0</div>
           </div>
         </div>
       </div>

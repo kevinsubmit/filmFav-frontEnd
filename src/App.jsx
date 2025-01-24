@@ -45,7 +45,7 @@ const App = () => {
       <Routes>
         {user ? (
           <>
-            <Route path="/" element={<Dashboard />} />
+            <Route path="/" element={<Dashboard movies={movies} />} />
             <Route path="/movies" element={<MoviesList movies={movies} />} />
             <Route path="/movies/:movieId" element={<MovieDetails user={user} />}/>
             <Route path="/movies/:movieId/reviews/:reviewId/edit" element={<ReviewForm />}

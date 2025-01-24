@@ -1,22 +1,104 @@
-import { useContext } from 'react';
-import { AuthedUserContext } from '../../App';
+import { Link } from "react-router";
+import "./Dashboard.css";
 
-const Dashboard = () => {
-    // const user = useContext(AuthedUserContext);
-    const user = localStorage.getItem('user')
-    
-    
+const Dashboard = ({ movies }) => {
+  const user = localStorage.getItem("user");
+  const movieArray = Array.isArray(movies) ? movies : movies?.results || [];
+  
+  
+  const topMovies = movieArray
+    .filter((movie) => movie.average_rating !== undefined && movie.average_rating >= 1)
+    .sort((a, b) => b.average_rating - a.average_rating)
+    .slice(0, 5);
 
-    return (
-      <main>
-        <h1>Welcome, {user}</h1>
-        <p>
-          This is the dashboard page where you, and only you, can see a dashboard
-          of all of your things.
-        </p>
-      </main>
-    );
-  };
-  
-  export default Dashboard;
-  
+    // const mostReviewed = movieArray
+
+  const lowestMovies = movieArray
+    .filter((movie) => movie.average_rating !== undefined && movie.average_rating >= 1)
+    .sort((a, b) => a.average_rating - b.average_rating)
+    .slice(0, 5);
+
+
+  return (
+    <main className="dashboard">
+      <div className="dashboard-message">
+        <div className="dashboard-welcome">Welcome to FilmFav, {user}</div>
+        <div className="dashboard-gap"></div>
+        <div className="dashboard-about">
+          Review and rate the latest movies out now!
+        </div>
+      </div>
+      <div className="rated-content">
+        <div className="rated-message">Top 5 Movies Today</div>
+        <div className="rated-list">
+          {topMovies.length > 0 ? (
+            topMovies.map((movie) => (
+              <div key={movie.id} className="rated-card">
+                <div className="rated-average">{movie.average_rating ? movie.average_rating.toFixed(2) + " / 5.00" : "N/A" } </div>
+                <div>
+                  <Link to={`/movies/${movie.id}`} className="movie-link">
+                    <img
+                      src={movie.poster_url}
+                      alt="poster_img"
+                      className="rated-image"
+                    />
+                  </Link>
+                </div>
+              </div>
+            ))
+          ) : (
+            <div>No movies available</div>
+          )}
+        </div>
+      </div>
+      <div className="rated-content">
+        <div className="rated-message">Most Reviewed Movies Today</div>
+        <div className="rated-list">
+          {topMovies.length > 0 ? (
+            topMovies.map((movie) => (
+              <div key={movie.id} className="rated-card">
+                <div className="rated-average">{movie.average_rating ? movie.average_rating.toFixed(2) + " / 5.00" : "N/A" } </div>
+                <div>
+                  <Link to={`/movies/${movie.id}`} className="movie-link">
+                    <img
+                      src={movie.poster_url}
+                      alt="poster_img"
+                      className="rated-image"
+                    />
+                  </Link>
+                </div>
+              </div>
+            ))
+          ) : (
+            <div>No movies available</div>
+          )}
+        </div>
+      </div>
+      <div className="rated-content">
+        <div className="rated-message">Lowest 5 Movies Today</div>
+        <div className="rated-list">
+          {lowestMovies.length > 0 ? (
+            lowestMovies.map((movie) => (
+              <div key={movie.id} className="rated-card">
+                <div className="rated-average">{movie.average_rating ? movie.average_rating.toFixed(2) + " / 5.00" : "N/A" }</div>
+                <div>
+                  <Link to={`/movies/${movie.id}`} className="movie-link">
+                    <img
+                      src={movie.poster_url}
+                      alt="poster_img"
+                      className="rated-image"
+                    />
+                  </Link>
+                </div>
+              </div>
+            ))
+          ) : (
+            <div>No movies available</div>
+          )}
+        </div>
+      </div>
+    </main>
+  );
+};
+
+export default Dashboard;
