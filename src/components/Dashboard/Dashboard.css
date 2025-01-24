@@ -45,10 +45,12 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    gap: 20px;
     width: 100%;
 }
 
 .rated-card {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -57,7 +59,7 @@
     gap: 30px;
     transition: transform 0.3s ease-in-out;
     width: 300px;
-    position: relative;
+    margin: 10px 10px 10px 10px;
 }
 
 .rated-card:hover {
@@ -74,7 +76,7 @@
     transform: translateX(-50%); 
     background-color: rgba(0, 0, 0, 0.6);
     padding: 5px 10px;
-    width: 330px;
+    width: 280px;
     border-radius: 10px;
     display: flex;
     align-content: center;
@@ -84,10 +86,36 @@
 }
 
 .rated-card:hover .rated-average {
-    opacity: 1; 
+    opacity: 1;
 }
+
+.latest-review {
+    font-size: 18px;
+    font-weight: bold;
+    color: white; 
+    position: absolute; 
+    bottom: 60px; 
+    left: 50%;
+    transform: translateX(-50%); 
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 5px 10px;
+    width: 280px;
+    border-radius: 10px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out; 
+    font-style: italic;
+}
+
+.rated-card:hover .latest-review {
+    opacity: 1;
+}
+
 .rated-image {
-    width: 350px;
+    width: 300px;
     height: 500px;
     border-radius: 10px;
     object-fit: cover;

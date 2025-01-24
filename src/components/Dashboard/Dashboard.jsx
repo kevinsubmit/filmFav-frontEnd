@@ -25,6 +25,19 @@ const Dashboard = ({ movies, reviews }) => {
     .sort((a,b) => b.reviewCount - a.reviewCount)
     .slice(0,5)
 
+    const getLastReview = (movieId) => {
+        const movieReviews = reviewArray
+        .filter((review) => review.movie === movieId)
+        .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+        if (movieReviews.length === 0) {
+            return "No Reviews Yet.";
+        }
+        const latestReview = movieReviews[0];
+        console.log(movieReviews)
+        return `${latestReview.username} said "${latestReview.text}"`;
+        
+    };
+
   return (
     <main className="dashboard">
       <div className="dashboard-message">
@@ -42,6 +55,7 @@ const Dashboard = ({ movies, reviews }) => {
             topMovies.map((movie) => (
               <div key={movie.id} className="rated-card">
                 <div className="rated-average">{movie.average_rating ? movie.average_rating.toFixed(2) + " / 5.00" : "N/A" } </div>
+                <div className="latest-review">{getLastReview(movie.id)}</div>
                 <div>
                   <Link to={`/movies/${movie.id}`} className="movie-link">
                     <img
@@ -65,6 +79,7 @@ const Dashboard = ({ movies, reviews }) => {
             mostReviewedMovies.map((movie) => (
               <div key={movie.id} className="rated-card">
                 <div className="rated-average">{movie.reviewCount} Review{movie.reviewCount > 1 ? "s": "" } </div>
+                <div className="latest-review">{getLastReview(movie.id)}</div>
                 <div>
                   <Link to={`/movies/${movie.id}`} className="movie-link">
                     <img
@@ -88,6 +103,7 @@ const Dashboard = ({ movies, reviews }) => {
             lowestMovies.map((movie) => (
               <div key={movie.id} className="rated-card">
                 <div className="rated-average">{movie.average_rating ? movie.average_rating.toFixed(2) + " / 5.00" : "N/A" }</div>
+                <div className="latest-review">{getLastReview(movie.id)}</div>
                 <div>
                   <Link to={`/movies/${movie.id}`} className="movie-link">
                     <img
