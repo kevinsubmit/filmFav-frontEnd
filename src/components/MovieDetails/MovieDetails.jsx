@@ -153,13 +153,16 @@ const MovieDetails = () => {
           </div>
         </div>
       </div>
-      <div className="reviews">
-        <div className="reviews-title">Reviews</div>
+      <div className="reviews-title">Reviews</div>
+
+      <div className="review-form">
+      <ReviewForm
+        handleAddReview={handleAddReview}
+        handleUpdateReview={handleUpdateReview}
         
-          <ReviewForm
-            handleAddReview={handleAddReview}
-            handleUpdateReview={handleUpdateReview}
-          />
+      />
+      </div>
+        <div className="reviews">
           {!reviews?.length && <div>No reviews yet</div>}
           {reviews?.map((review, index) => (
             <div key={`${review.id}-${index}`} className="reviews-comments">
@@ -186,11 +189,10 @@ const MovieDetails = () => {
                     </button>
                   </>
                 )}
-
                 <div>{review.text}</div>
               </div>
               <div>
-                <div>Comments</div>
+                <div className="comments-label">Comments</div>
                 <CommentForm
                   handleAddComment={(commentData) =>
                     handleAddComment(review.id, commentData)
@@ -203,17 +205,21 @@ const MovieDetails = () => {
                   <div key={`${comment.id}-${index}`}>
                     <div>
                       <div>
-                        {comment.username
-                          ? `${comment.username} posted on: ${new Date(
-                              comment.created_at
-                            ).toLocaleDateString()}`
-                          : "Anonymous"}
+                        <div className="comment-details">
+                          <div className="comment-user">
+                            {comment.username
+                              ? `${comment.username} posted on: ${new Date(
+                                  comment.created_at
+                                ).toLocaleDateString()}`
+                              : "Anonymous"}
+                          </div>
+                          <div>{comment.text}</div>
+                        </div>
                       </div>
                     </div>
-                    <div>{comment.text}</div>
                     {comment.username === user && (
                       <>
-                        <button onClick={() => handleDeleteComment(comment.id)}>
+                        <button onClick={() => handleDeleteComment(comment.id)} className="delete-comment-btn">
                           Delete Comment
                         </button>
                       </>
@@ -223,7 +229,7 @@ const MovieDetails = () => {
               </div>
             </div>
           ))}
-      </div>
+        </div>
     </main>
   );
 };
