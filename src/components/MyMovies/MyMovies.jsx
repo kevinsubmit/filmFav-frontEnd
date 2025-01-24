@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router";
 import React, { useState, useEffect } from "react";
 import * as mineService from "../../services/mineService";
+import './MyMovies.css'
 
 const MyMovies = () => {
   const [myMovies, setmyMovies] = useState({});
@@ -26,18 +27,15 @@ const MyMovies = () => {
   };
 
   return (
-    <ul>
+    <ul className="mymovies">
       {myMovies.length > 0 ? (
         myMovies.map((movie) => (
-          <li key={movie.id}>
+          <li key={movie.id} className="mymovies-card">
             <article>
-              <h2>{movie.title}</h2>
-              <img src={movie.poster_url} alt="poster_img" />
-              <p>{movie.description}</p>
-              <Link to={`/movies/${movie.id}`}>View Details</Link>
+              <Link to="movies/${movie.id}" className="mymovies-link"><img src={movie.poster_url} alt="poster_img" className="mymovies-img" /></Link>
               <div>
-                <button onClick={() => removeFromMyMovies([movie.id])}>
-                  remove From MyMovies
+                <button onClick={() => removeFromMyMovies([movie.id])} className="mymovies-btn">
+                  Remove From My Watched Movies
                 </button>
               </div>
             </article>
@@ -51,3 +49,7 @@ const MyMovies = () => {
 };
 
 export default MyMovies;
+
+
+
+
