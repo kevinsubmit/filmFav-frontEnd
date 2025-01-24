@@ -22,6 +22,18 @@ const show = async (movieId) => {
   }
 }
 
+const showAllReviews = async () => {
+  try {
+    const res = await fetch(`${BASE_URL}/reviews/`, {
+      headers: { Authorization: `Bearer ${localStorage.getItem('access')}` },
+    })
+    console.log(res.json)
+    return res.json ()
+  } catch (error) {
+    console.error(error)
+  }
+}
+
 const createReview = async (movieId, reviewData) => {
   try {
     const res = await fetch(`${BASE_URL}/reviews/`, {
@@ -120,6 +132,7 @@ export {
   index,
   show,
   createReview,
+  showAllReviews,
   showReviews,
   updateReview,
   deleteReview,

@@ -1,23 +1,29 @@
 import { Link } from "react-router";
 import "./Dashboard.css";
 
-const Dashboard = ({ movies }) => {
+const Dashboard = ({ movies, reviews }) => {
   const user = localStorage.getItem("user");
   const movieArray = Array.isArray(movies) ? movies : movies?.results || [];
-  
+  const reviewArray = reviews
+    
   
   const topMovies = movieArray
     .filter((movie) => movie.average_rating !== undefined && movie.average_rating >= 1)
     .sort((a, b) => b.average_rating - a.average_rating)
     .slice(0, 5);
 
-    // const mostReviewed = movieArray
-
   const lowestMovies = movieArray
     .filter((movie) => movie.average_rating !== undefined && movie.average_rating >= 1)
     .sort((a, b) => a.average_rating - b.average_rating)
     .slice(0, 5);
-
+   
+  const mostReviewedMovies = movieArray.map((movie)=> {
+    const reviewCount = reviewArray.filter((review) => review.movie === movie.id).length
+    return {...movie, reviewCount}
+  })
+    .filter((movie) => movie.reviewCount > 0)
+    .sort((a,b) => b.reviewCount - a.reviewCount)
+    .slice(0,5)
 
   return (
     <main className="dashboard">
@@ -29,7 +35,7 @@ const Dashboard = ({ movies }) => {
         </div>
       </div>
       <div className="rated-content">
-        <div className="rated-message">Top 5 Movies Today</div>
+        <div className="rated-message">Top 5 Rated Movies Today</div>
         <div className="rated-list">
           {topMovies.length > 0 ? (
             topMovies.map((movie) => (
@@ -54,10 +60,10 @@ const Dashboard = ({ movies }) => {
       <div className="rated-content">
         <div className="rated-message">Most Reviewed Movies Today</div>
         <div className="rated-list">
-          {topMovies.length > 0 ? (
-            topMovies.map((movie) => (
+          {mostReviewedMovies.length > 0 ? (
+            mostReviewedMovies.map((movie) => (
               <div key={movie.id} className="rated-card">
-                <div className="rated-average">{movie.average_rating ? movie.average_rating.toFixed(2) + " / 5.00" : "N/A" } </div>
+                <div className="rated-average">{movie.reviewCount} Review{movie.reviewCount > 1 ? "s": "" } </div>
                 <div>
                   <Link to={`/movies/${movie.id}`} className="movie-link">
                     <img
@@ -75,7 +81,7 @@ const Dashboard = ({ movies }) => {
         </div>
       </div>
       <div className="rated-content">
-        <div className="rated-message">Lowest 5 Movies Today</div>
+        <div className="rated-message">Lowest 5 Rated Movies Today</div>
         <div className="rated-list">
           {lowestMovies.length > 0 ? (
             lowestMovies.map((movie) => (

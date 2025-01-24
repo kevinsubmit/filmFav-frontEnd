@@ -15,6 +15,7 @@ const MovieDetails = () => {
   const [reviews, setReviews] = useState(null);
   const [comments, setComments] = useState({});
   const [toggle, setToggle] = useState(false);
+  console.log(reviews)
 
   const fetchMovie = async () => {
     try {
