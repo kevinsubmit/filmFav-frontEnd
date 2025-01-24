@@ -1,15 +1,21 @@
 const BASE_URL = `${import.meta.env.VITE_BACKEND_SERVER_URL}`;
 
-const index = async () => {
+const index = async (url) => {
   try {
-    const res = await fetch(`${BASE_URL}/movies/`, {
+    const res = await fetch(url, {
       headers: { Authorization: `Bearer ${localStorage.getItem('access')}` },
     });
+
+    if (!res.ok) {
+      throw new Error("Failed to fetch movies");
+    }
     return res.json();
   } catch (error) {
     console.log(error);
+    return null;
   }
 };
+
 
 const show = async (movieId) => {
   try {
