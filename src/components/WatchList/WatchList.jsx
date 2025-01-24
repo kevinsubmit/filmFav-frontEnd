@@ -36,7 +36,7 @@ const WatchList = () => {
               <Link to={`/movies/${movie.id}`} className="movie-link"><img src={movie.poster_url} alt="poster_img" className="watch-img" /></Link>
               <div>
                 <button onClick={() => removeFromMyWatchlist([movie.id])} className="remove-btn">
-                remove From MyWatchlist
+                Remove From My To Watch List
                 </button>
               </div>
             </article>
