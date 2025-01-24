@@ -2,15 +2,16 @@ body {
     background-color: black;
 }
 
-.movies-list {
+
+.mymovies {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-evenly;
     width: 100%;
     padding: 0; 
 }
 
-.movie-card {
+.mymovies-card {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -20,29 +21,22 @@ body {
     margin: 30px;
 }
 
-.movie-card:hover {
-    transform: scale(1.15);
+.mymovies-btn {
+    margin-bottom: 20px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: rgb(64, 61, 61);
+    cursor: pointer;
+    font-size: 18px;
 }
 
-.img {
+.mymovies-img{
     width: 400px;
     height: 650px;
     border-radius: 10px;
     object-fit: cover;
-}
-
-@media (max-width: 900px) {
-    .img {
-        width: 150px;
-        height: 225px;
-    }
-
-    .movies-list {
-        gap: 10px;
-    }
-
-    .img {
-        width: 50px;
-        height: 90px;
-    }
 }

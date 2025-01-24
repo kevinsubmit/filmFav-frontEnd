@@ -30,14 +30,23 @@ const App = () => {
   };
 
 
+  const [reviews, setReviews] = useState([])
+
+  useEffect(() => {
+    const fetchAllReviews = async () => {
+      const reviews = await movieService.showAllReviews()
+      setReviews(reviews)
+    }
+    fetchAllReviews()
+  }, [])
   return (
     <AuthedUserContext.Provider value={user}>
       <NavBar handleSignout={handleSignout} />
       <Routes>
         {user ? (
           <>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/movies" element={<MoviesList />} />
+            <Route path="/" element={<Dashboard movies={movies} reviews={reviews}/>} />
+            <Route path="/movies" element={<MoviesList movies={movies} />} />
             <Route path="/movies/:movieId" element={<MovieDetails user={user} />}/>
             <Route path="/movies/:movieId/reviews/:reviewId/edit" element={<ReviewForm />}
             />

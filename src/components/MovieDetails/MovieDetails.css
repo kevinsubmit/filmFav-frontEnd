@@ -1,0 +1,145 @@
+.detail-card{
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    margin: 50px 0 50px 0;
+    align-items: center;
+    align-content: center;
+}
+
+.detail-button {
+    margin-bottom: 20px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: rgb(64, 61, 61);
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.detail-buttons{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+    align-content: center;
+}
+
+
+main {
+    margin: 50px 150px 50px 100px;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    gap: 80px;
+}
+
+.intro {
+    display: flex;
+    flex-direction: row;
+    gap: 100px;
+}
+
+img {
+    height: 500px;
+    width: 333px;
+    box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.8)
+}
+
+
+.movie-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.movie-title {
+    font-size: 70px;
+    font-weight: bold;
+}
+
+.description {
+    font-size: 30px;
+}
+
+.release-year {
+    font-size: 30px;
+}
+
+.genres {
+    display: flex;
+    gap: 14px;
+   
+}
+
+.genre {
+    display: flex;
+    gap: 14px;
+    border: 15px solid white;
+    width: 70px;
+    background-color: white;
+    border-radius: 15px;
+    color: black;
+    justify-content: center;
+}
+
+.movie-rating {
+    font-size: 25px;
+    display: flex;
+    flex-direction: row;
+    gap: 5px
+}
+
+.reviews {
+  display: flex;
+  flex-direction: column;
+}
+
+.reviews-title {
+    font-size: 50px;
+}
+
+.reviews-comments {
+    display: flex;
+    flex-direction: row;
+    gap: 100px;
+    border: 2px solid white;
+    border-radius: 30px;
+
+}
+.review-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 150px;
+    width: 50%;
+    
+}
+
+.review-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 20px 20px 10px 20px;
+    border: 2px solid white;
+    height: 40px;
+    border-radius: 30px;
+    align-items: center;
+    padding: 5px 15px 5px 15px;
+    
+}
+
+.user-rating {
+    font-style: italic;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.posted-date {
+    font-style: italic;
+    font-weight: bold;
+    font-size: 20px;
+}
