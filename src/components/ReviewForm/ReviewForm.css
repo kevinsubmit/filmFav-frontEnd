@@ -1,0 +1,91 @@
+/* Container for the form */
+.review-form {
+  width: 100%; /* Extend the form container to the full width of the page */
+  max-width: 100%; /* Remove any fixed width constraints */
+  margin: 20px 0; /* Add vertical spacing */
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Form structure */
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Adjust spacing between form items */
+}
+
+/* Title styling */
+.form-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+/* Grouping labels and inputs */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Label styling */
+.form-label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #555;
+}
+
+/* Textarea styling */
+.form-textarea {
+  width: 100%; /* Extend textarea to full width */
+  resize: none; /* Disable resizing */
+  height: 200px; /* Increase height for better usability */
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.form-textarea:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Input styling */
+.form-input {
+  width: 100%; /* Extend input fields to full width */
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.form-input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Button styling */
+.form-button {
+  padding: 12px;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%; /* Extend button to full width */
+}
+
+.form-button:hover {
+  background-color: #0056b3;
+}
