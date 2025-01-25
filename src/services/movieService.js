@@ -127,6 +127,21 @@ const deleteComment = async (commentId) => {
     console.error('Error deleting a comment:', error);
   }
 };
+const indexPagination = async (url) => {
+  try {
+    const res = await fetch(url, {
+      headers: { Authorization: `Bearer ${localStorage.getItem('access')}` },
+    });
+
+    if (!res.ok) {
+      throw new Error("Failed to fetch movies");
+    }
+    return res.json();
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+};
 
 export { 
   index,
@@ -139,4 +154,5 @@ export {
   createComment,
   showComments,
   deleteComment,
+  indexPagination,
 };
