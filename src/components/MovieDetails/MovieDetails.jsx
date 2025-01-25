@@ -5,6 +5,7 @@ import ReviewForm from "../ReviewForm/ReviewForm";
 import { Link } from "react-router-dom";
 import { AuthedUserContext } from "../../App";
 import "./MovieDetails.css";
+import * as mineService from "../../services/mineService";
 
 import CommentForm from "../CommentForm/CommentForm";
 
@@ -43,6 +44,24 @@ const MovieDetails = () => {
       }));
     } catch (error) {
       console.error("Error fetching comments:", error);
+    }
+  };
+  const addToMyMovies = async (movie_ids) => {
+    try {
+      const myMoviesData = await mineService.addToMyMovies(movie_ids);
+      alert(myMoviesData.detail)
+      return;
+    } catch (error) {
+      console.error("Error addToMyMovies:", error);
+    }
+  };
+  const addToMyWatchlist = async (movie_ids) => {
+    try {
+      const myWatchlistData = await mineService.addToMyWatchlist(movie_ids);
+      alert(myWatchlistData.detail)
+      return;
+    } catch (error) {
+      console.error("Error addToMyMovies:", error);
     }
   };
 
@@ -120,6 +139,14 @@ const MovieDetails = () => {
     <main key={movie.id}>
       <div className="intro">
         <img src={movie.poster_url} alt={`${movie.title} Poster`} />
+        <div>
+            <button onClick={() => addToMyMovies([movie.id])}>
+            mark it as myMovies
+            </button>
+            <button onClick={() => addToMyWatchlist([movie.id])}>
+              Add to my watchlist
+            </button>
+          </div>
         <div className="movie-details">
           <div className="movie-title">{movie.title}</div>
           <div className="description">{movie.description}</div>
