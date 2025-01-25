@@ -28,7 +28,6 @@ const showAllReviews = async () => {
     const res = await fetch(`${BASE_URL}/reviews/`, {
       headers: { Authorization: `Bearer ${localStorage.getItem('access')}` },
     })
-    console.log(res.json)
     return res.json ()
   } catch (error) {
     console.error(error)
