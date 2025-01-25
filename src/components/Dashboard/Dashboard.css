@@ -46,6 +46,8 @@
     flex-wrap: nowrap;
     justify-content: space-between;
     overflow-x: auto;
+    overflow-y: hidden; 
+    white-space: nowrap;
     scroll-behavior: smooth;
     gap: 20px;
     width: 100%;
@@ -53,16 +55,16 @@
 }
 
 .rated-list::-webkit-scrollbar {
-    height: 8px; /* Adjust scrollbar height */
+    height: 8px;
 }
 
 .rated-list::-webkit-scrollbar-thumb {
-    background: rgba(0, 0, 0, 0.5); /* Scrollbar color */
-    border-radius: 4px; /* Rounded corners */
+    background: rgba(0, 0, 0, 0.5); 
+    border-radius: 4px; 
 }
 
 .rated-list::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.1); /* Track color */
+    background: rgba(0, 0, 0, 0.1);
 }
 
 .rated-card {
@@ -88,18 +90,18 @@
     font-weight: bold;
     color: white; 
     position: absolute; 
-    bottom: 170px; 
+    bottom: 85px; 
     left: 50%;
     transform: translateX(-50%); 
     background-color: rgba(0, 0, 0, 0.6);
     padding: 5px 10px;
     width: 280px;
-    border-radius: 10px;
     display: flex;
     align-content: center;
     justify-content: center;
     opacity: 0;
     transition: opacity 0.3s ease-in-out; 
+    border-radius: 0 0 15px 15px;
 }
 
 .rated-card:hover .rated-average {
@@ -111,13 +113,12 @@
     font-weight: bold;
     color: white; 
     position: absolute; 
-    bottom: 227px; 
+    bottom: 135px; 
     left: 50%;
     transform: translateX(-50%); 
     background-color: rgba(0, 0, 0, 0.6);
     padding: 5px 10px;
     width: 280px;
-    border-radius: 10px;
     display: flex;
     align-content: center;
     justify-content: center;
@@ -125,6 +126,9 @@
     opacity: 0;
     transition: opacity 0.3s ease-in-out; 
     font-style: italic;
+    word-wrap: break-word;
+    overflow-wrap: break-word; 
+    white-space: normal;
 }
 
 .rated-card:hover .latest-review {
@@ -151,4 +155,3 @@
     .rated-card {
         width: 200px;
     }
-}
