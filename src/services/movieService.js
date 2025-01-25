@@ -6,6 +6,7 @@ const index = async () => {
       headers: { Authorization: `Bearer ${localStorage.getItem('access')}` },
     });
     return res.json();
+    console.log(res.json())
   } catch (error) {
     console.log(error);
   }
@@ -27,7 +28,6 @@ const showAllReviews = async () => {
     const res = await fetch(`${BASE_URL}/reviews/`, {
       headers: { Authorization: `Bearer ${localStorage.getItem('access')}` },
     })
-    console.log(res.json)
     return res.json ()
   } catch (error) {
     console.error(error)
@@ -143,6 +143,17 @@ const indexPagination = async (url) => {
   }
 };
 
+const showAllMovies = async () => {
+  try {
+    const res = await fetch(`${BASE_URL}/allmovies/`, {
+      headers: { Authorization: `Bearer ${localStorage.getItem('access')}` },
+    }); 
+    return res.json()
+  } catch (error) {
+    console.error(error)
+  }
+}
+
 export { 
   index,
   show,
@@ -155,4 +166,5 @@ export {
   showComments,
   deleteComment,
   indexPagination,
+  showAllMovies,
 };
