@@ -1,4 +1,8 @@
-form {
+main{
+  align-items: center;
+}
+
+  form {
   display: flex;
   align-items: center;
   margin: 30px auto;
@@ -64,6 +68,36 @@ button {
 button:hover {
   background-color: #bdbdb8;
 }
+
+review-textarea {
+  width: 40%;
+}
+
+div.review-form{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+  gap: 20px;
+}
+
+.review-form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  gap: 20px;
+}
+
+.submit-review{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+}
+
 
 .rating-input {
   display: flex;

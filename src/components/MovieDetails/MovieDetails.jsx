@@ -141,10 +141,10 @@ const MovieDetails = () => {
         <img src={movie.poster_url} alt={`${movie.title} Poster`} />
         <div>
             <button onClick={() => addToMyMovies([movie.id])}>
-            mark it as myMovies
+            Mark As Watched
             </button>
             <button onClick={() => addToMyWatchlist([movie.id])}>
-              Add to my watchlist
+              Add To My Watchlist
             </button>
           </div>
         <div className="movie-details">
@@ -197,9 +197,10 @@ const MovieDetails = () => {
                 <div className="review-header">
                   <div className="user-rating">
                     {review.username
-                      ? `${review.username} rated the movie a ${review.rating} out of 5.00`
+                      ? `${review.username} rated this movie a ${review.rating} out of 5.00`
                       : "Anonymous"}
                   </div>
+                  <div className="dashboard-dap"></div>
                   <div className="posted-date">
                     {`Posted on: ${new Date(
                       review.created_at
@@ -219,7 +220,7 @@ const MovieDetails = () => {
                 <div>{review.text}</div>
               </div>
               <div>
-                <div className="comments-label">Comments</div>
+                <div className="comments-label">Comments:</div>
                 <CommentForm
                   handleAddComment={(commentData) =>
                     handleAddComment(review.id, commentData)
