@@ -52,10 +52,7 @@ const Landing = () => {
 				Create lists, discover trends, and connect with movie lovers.
 				<br />
 				<strong className='signup_link'>
-					<Link to='/signup'>
-						{' '}
-						<span className='span-signup'>Sign Up</span>
-					</Link>
+					<Link to='/signup'> </Link>
 				</strong>
 				<span> to make every movie moment unforgettable!</span>
 			</h3>
