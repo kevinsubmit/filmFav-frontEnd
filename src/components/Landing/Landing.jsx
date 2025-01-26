@@ -1,5 +1,5 @@
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import './Landing.css';
 import './Landing.css';
 
 const Landing = () => {
@@ -48,11 +48,14 @@ const Landing = () => {
 			</div>
 
 			<h3>
-				Explore cinema with FilmFav! <span />
+				Explore cinema with FilmFav!
+				<span />
 				Create lists, discover trends, and connect with movie lovers.
 				<br />
-				<strong className='signup_link'>
-					<Link to='/signup'> </Link>
+				<strong>
+					<Link to='/signup' className='signup_link'>
+						Sign Up
+					</Link>
 				</strong>
 				<span> to make every movie moment unforgettable!</span>
 			</h3>
