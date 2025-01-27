@@ -28,9 +28,11 @@ const ReviewForm = ({ handleAddReview}) => {
   };
 
   return (
+    <div className='review-form'>
     <form onSubmit={handleSubmit}>
       <h1>{reviewId ? "Edit Review" : "Create Review"}</h1>
       <label htmlFor='text-input'>Your Review:</label>
+      <div className='review-textarea'>
       <textarea
         required
         type='text'
@@ -39,6 +41,7 @@ const ReviewForm = ({ handleAddReview}) => {
         value={formData.text}
         onChange={handleChange}
       />
+      </div>
       <label htmlFor='rating-input'>Rating (1-5):</label>
       <div className='rating-input'>
       <input
@@ -53,8 +56,9 @@ const ReviewForm = ({ handleAddReview}) => {
         onChange={handleChange}
       />
       </div>
-      <button type='submit'>SUBMIT Review</button>
+      <button type='submit' className='submit-review'>Submit Review</button>
     </form>
+    </div>
   );
 };
 
