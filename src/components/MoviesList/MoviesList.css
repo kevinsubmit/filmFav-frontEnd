@@ -2,6 +2,10 @@ body {
     background-color: black;
 }
 
+.main-movielist {
+    margin-top: 200px;
+}
+
 .movies-list {
     display: flex;
     flex-wrap: wrap;

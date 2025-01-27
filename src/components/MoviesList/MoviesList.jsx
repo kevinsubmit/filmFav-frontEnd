@@ -39,7 +39,7 @@ const MoviesList = () => {
   };
 
   return (
-    <main>
+    <main className='main-movielist'>
     <ul className="movies-list">
       {movies.length > 0 ? (
         movies.map((movie) => (

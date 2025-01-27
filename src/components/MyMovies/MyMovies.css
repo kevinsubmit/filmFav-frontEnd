@@ -8,7 +8,8 @@ body {
     flex-wrap: wrap;
     justify-content: space-evenly;
     width: 100%;
-    padding: 0; 
+    padding: 0;
+    margin-top: 200px; 
 }
 
 .mymovies-card {

@@ -136,7 +136,7 @@ const MovieDetails = () => {
   }
 
   return (
-    <main key={movie.id}>
+    <main key={movie.id} className="movie-details-main">
       <div className="intro">
         <img src={movie.poster_url} alt={`${movie.title} Poster`} />
         <div>
