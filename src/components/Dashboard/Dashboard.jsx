@@ -1,10 +1,10 @@
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import "./Dashboard.css";
 import { useEffect, useState } from "react";
 import * as movieService from "../../services/movieService";
 
 const Dashboard = ({ reviews }) => {
-  const user = localStorage.getItem("user");
+  const user = localStorage.getItem("user")
   
   const reviewArray = reviews;
 

@@ -12,7 +12,6 @@ const MoviesList = () => {
   const fetchMovies = async (url) => {
     try {
       const data = await movieService.indexPagination(url); 
-      console.log(url)
       setMovies(data.results);
       setNextPage(data.next);  
       setPrevPage(data.previous);

@@ -6,7 +6,6 @@ const index = async () => {
       headers: { Authorization: `Bearer ${localStorage.getItem('access')}` },
     });
     return res.json();
-    console.log(res.json())
   } catch (error) {
     console.log(error);
   }
@@ -168,3 +167,4 @@ export {
   indexPagination,
   showAllMovies,
 };
+
