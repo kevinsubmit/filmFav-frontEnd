@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import * as authService from '../../services/authService';
-import './SignInNew.css'
+import './SignInNew.css';
 
-
-const SignInForm = (props) => {
+const SigninForm = (props) => {
 	const navigate = useNavigate();
 	const [message, setMessage] = useState(['']);
 	const [formData, setFormData] = useState({
@@ -35,11 +34,14 @@ const SignInForm = (props) => {
 
 	return (
 		<main className='container'>
+			<h1 className='formTitle'>Sign In</h1>
+			<div className='FormAndVideos'>
 			<section className='formSection'>
-				<h1 className='formTitle1'>Login</h1>
-				<form autoComplete='off' onSubmit={handleSubmit}>
-					<div>
-						<label htmlFor='email'>Username:</label>
+				<form autoComplete='off' onSubmit={handleSubmit} className='signin-form'>
+					<div >
+						<div className='Username'>
+						<label htmlFor='email' className='username'>Username:</label>
+						</div>
 						<input
 							type='text'
 							autoComplete='off'
@@ -50,7 +52,7 @@ const SignInForm = (props) => {
 						/>
 					</div>
 					<div>
-						<label htmlFor='password'>Password:</label>
+						<label htmlFor='password' className='password'>Password:</label>
 						<input
 							type='password'
 							autoComplete='off'
@@ -76,14 +78,15 @@ const SignInForm = (props) => {
 			</section>
 			<section className='videoSection'>
 				<video className='video' autoPlay muted loop>
-					<source src='/videos/superman12.mp4' />
+					<source src='/public/videos/superman12.mp4' />
 				</video>
 				<video className='video' autoPlay muted loop>
-					<source src='/videos/ben_ten.mp4' />
+					<source src='/public/videos/ben_ten.mp4' />
 				</video>
 			</section>
+			</div>
 		</main>
 	);
 };
 
-export default SignInForm;
+export default SigninForm;
