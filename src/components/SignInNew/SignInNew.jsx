@@ -78,10 +78,10 @@ const SigninForm = (props) => {
 			</section>
 			<section className='videoSection'>
 				<video className='video' autoPlay muted loop>
-					<source src='/public/videos/superman12.mp4' />
+					<source src='/videos/superman12.mp4' />
 				</video>
 				<video className='video' autoPlay muted loop>
-					<source src='/public/videos/ben_ten.mp4' />
+					<source src='/videos/ben_ten.mp4' />
 				</video>
 			</section>
 			</div>
