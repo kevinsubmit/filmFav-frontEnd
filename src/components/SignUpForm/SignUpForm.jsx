@@ -44,10 +44,10 @@ const SignupForm = (props) => {
 			{/* Left Section: Video */}
 			<section className='videoSection'>
 				<video className='video-signup' autoPlay muted loop>
-					<source src='/public/videos/topgun.mp4' />
+					<source src='/videos/topgun.mp4' />
 				</video>
 				<video className='video-signup' autoPlay muted loop>
-					<source src='/public/videos/sonic.mp4' />
+					<source src='/videos/sonic.mp4' />
 				</video>
 			</section>
 
