@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import { AuthedUserContext } from "../../App";
 import { Link } from "react-router-dom";
-import './NavBar.css'
+import "./NavBar.css";
 
 const NavBar = ({ handleSignout }) => {
   const BACKEND_URL = import.meta.env.VITE_BACKEND_SERVER_URL;
@@ -43,7 +43,7 @@ const NavBar = ({ handleSignout }) => {
   return (
     <>
       {user ? (
-        <nav className='navbar'>
+        <nav className="navbar">
           <ul className="nav-links">
             <li>
               <Link to="/" className="nav-link">
@@ -53,33 +53,37 @@ const NavBar = ({ handleSignout }) => {
                 />
               </Link>
             </li>
-            <input
-            type="text"
-            value={searchQuery}
-            onChange={handleSearchChange}
-            placeholder="Search movies..."
-          />
-
-          {searchQuery && (
-            <div className="search-results">
-              {searchResults.length > 0 ? (
-                <ul>
-                  {searchResults.map((movie) => (
-                    <li key={movie.id}>
-                      <Link
-                        to={`/movies/${movie.id}`}
-                        onClick={handleLinkClick}
-                      >
-                        {movie.title}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                <p>No results found</p>
+            <div className="searchbar-container">
+              <div>
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={handleSearchChange}
+                  placeholder="Search movies..."
+                  className="input-searchbar"
+                />
+              </div>
+              {searchQuery && (
+                <div className="search-results">
+                  {searchResults.length > 0 ? (
+                    <ul className="results-movie">
+                      {searchResults.map((movie) => (
+                        <li key={movie.id} className="results-text">
+                          <Link
+                            to={`/movies/${movie.id}`}
+                            onClick={handleLinkClick}
+                          >
+                            {movie.title}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p>No results found</p>
+                  )}
+                </div>
               )}
             </div>
-          )}
             <li>
               <Link to="/movies" className="nav-link">
                 Movies
@@ -101,26 +105,25 @@ const NavBar = ({ handleSignout }) => {
               </Link>
             </li>
           </ul>
-          
         </nav>
       ) : (
-        <nav className='navbar'>
-        <ul className='nav-links'>
+        <nav className="navbar">
+          <ul className="nav-links">
             <li>
-                <Link to='/' className='nav-link'>
-                    <img
-                        src='https://github.com/bschlo/filmFav-frontEnd/blob/LandingPage/src/assets/Film%20Favorite.png?raw=true'
-                        alt='logo'
-                    />
-                </Link>
+              <Link to="/" className="nav-link">
+                <img
+                  src="https://github.com/bschlo/filmFav-frontEnd/blob/LandingPage/src/assets/Film%20Favorite.png?raw=true"
+                  alt="logo"
+                />
+              </Link>
             </li>
-            <div className='navbar-tab'>
-            <li>
-              <Link to="/signin">Sign In</Link>
-            </li>
-            <li>
-              <Link to="/signup">Sign Up</Link>
-            </li>
+            <div className="navbar-tab">
+              <li>
+                <Link to="/signin">Sign In</Link>
+              </li>
+              <li>
+                <Link to="/signup">Sign Up</Link>
+              </li>
             </div>
           </ul>
         </nav>

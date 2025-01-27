@@ -1,116 +1,114 @@
+/* Reset body and html margins */
 body,
 html {
-	margin: 0;
-	padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
+/* Navbar styles */
 .navbar {
-	background-color: black;
-	padding: 0 1rem;
-	position: fixed;
-	top: 0;
-	width: 100%;
-	z-index: 1000;
-	height: 100px;
-	display: flex;
-	/* justify-content: center; */
-	/* align-items: flex-end; */
-	font-size: 20px;
-	flex-direction: row;
-	justify-content: flex-end;
-	margin-right: 30px;
-	padding-right: 30px;
+  background-color: black;
+  padding: 0 1rem;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  font-size: 20px;
+  flex-direction: row;
+  margin-right: 30px;
+  padding-right: 30px;
+  padding-left: 30px;
+  box-sizing: border-box; /* Ensure padding is accounted for */
 }
 
+/* Ensure the search bar container is positioned relative */
+.searchbar-container {
+  position: relative;
+  flex-grow: 1;
+  display: flex;
+ /* Align the search bar to the right */
+  margin-top: 35px; /* Adjust to space the search bar below the navbar */
+  justify-content: center;
+  align-items: center;
+}
+
+/* Search bar styles */
+.input-searchbar {
+  border-radius: 25px;
+  height: 30px;
+  width: 300px;
+  padding: 8px;
+  font-size: 16px;
+}
+
+/* Position the search results directly below the search bar */
+.search-results {
+  position: absolute;
+  top: 49px; /* Distance from the search bar */
+  width: 280px;
+  background-color: white;
+  color: black;
+  z-index: 999;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
+  max-height: 300px;
+  overflow-y: auto;
+  display: flex;
+  
+}
+
+/* Ensure body content is below navbar */
+body {
+  padding-top: 120px; /* Push content down to make space for navbar */
+}
+
+/* Navbar links styling */
 .nav-links img {
-	height: 100px;
-    width: 100px;
-    margin-top: 20px;
-    box-shadow: none;
-}
-
-.navbar-absolute {
-	position: relative;
-	width: 100%;
-	background-color: #333;
-	padding: 10px 0;
-	color: white;
-}
-
-.navbar-left {
-	flex-grow: 1; /* Pushes other elements to the right */
-}
-.search-bar-absolute {
-	position: absolute;
-	left: 370px;
-	top: 50%;
-	transform: translateY(-50%);
-	padding: 8px;
-	border-radius: 4px;
-	border: 1px solid #ccc;
-	width: 350px;
-}
-
-.navbar-right button {
-	margin-left: 10px;
-	padding: 8px 12px;
-	background-color: #555;
-	color: white;
-	border: none;
-	border-radius: 4px;
-	cursor: pointer;
-}
-
-.navbar-right button:hover {
-	background-color: #777;
+  height: 100px;
+  width: 100px;
+  margin-top: 20px;
+  box-shadow: none;
 }
 
 .nav-links {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	width: 100%;
-	color: white;
-	padding: 5px 10px;
-	border-radius: 5px;
-	transition:
-		background-color 0.3s ease,
-		transform 0.2s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .nav-links li {
-	display: inline-block;
-	padding-left: 30px;
-	padding-right: 150px;
+  display: inline-block;
+  padding-left: 30px;
+  padding-right: 150px;
 }
 
 .nav-links a {
-	text-decoration: none;
-	color: white;
+  text-decoration: none;
+  color: white;
 }
 
 .nav-links a:hover {
-	color: #ff9800;
+  color: #ff9800;
 }
 
-.nav-center {
-	flex: 1;
-	text-align: center;
+.search-results a {
+	color: black;
 }
 
-.navbar-tab {
-	margin-left: 10px;
-	padding: 8px 12px;
-	color: white;
-	border: none;
-	border-radius: 4px;
-	cursor: pointer;
+.results-movie ul {
+	display: flex;
+	align-items: center;
+	
 }
 
-ul,
-li {
-	margin: 0;
-	padding: 0;
-	/* list-style: none; */
+.results-text {
+	width: 100%;
+	justify-content: center;
 }
-
