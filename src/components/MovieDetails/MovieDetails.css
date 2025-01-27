@@ -60,6 +60,7 @@ button {
 
 a {
     text-decoration: none;
+    color: white;
 }
 
 .delete-review-btn {
@@ -121,7 +122,7 @@ main {
   display: flex;
   flex-direction: column;
   color: white;
-  gap: 80px;
+  gap: 40px;
 }
 
 .intro {
