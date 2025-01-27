@@ -29,7 +29,6 @@ const App = () => {
     authService.signout();
     setUser(null);
   };
-
   const [movies, setMovies] = useState([]);
   useEffect(() => {
     const fetchMovies = async () => {
