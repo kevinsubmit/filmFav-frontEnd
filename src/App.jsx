@@ -2,9 +2,9 @@ import { createContext, useContext, useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar/NavBar";
 import SignupForm from "./components/SignUpForm/SignUpForm";
+import SignInForm from "./components/SignInNew/SignInNew"
 import Landing from "./components/Landing/Landing";
 import Dashboard from "./components/Dashboard/Dashboard";
-import SignInForm from "./components/SignInForm/SigninForm";
 import * as authService from "../src/services/authService";
 import { getUser } from "../src/services/authService";
 import MoviesList from "./components/MoviesList/MoviesList";
@@ -14,6 +14,7 @@ import ReviewForm from "./components/ReviewForm/ReviewForm";
 import MyMovies from "./components/MyMovies/MyMovies";
 import WatchList from "./components/WatchList/WatchList";
 export const AuthedUserContext = createContext(null); // set the initial value of the context to null
+
 
 const App = () => {
   const [user, setUser] = useState(authService.getUser()); // using the method from authservice
