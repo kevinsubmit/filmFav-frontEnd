@@ -13,7 +13,6 @@ import * as movieService from "./services/movieService";
 import ReviewForm from "./components/ReviewForm/ReviewForm";
 import MyMovies from "./components/MyMovies/MyMovies";
 import WatchList from "./components/WatchList/WatchList";
-
 export const AuthedUserContext = createContext(null); // set the initial value of the context to null
 
 const App = () => {
@@ -31,9 +30,7 @@ const App = () => {
     setUser(null);
   };
 
-
   const [movies, setMovies] = useState([]);
-
   useEffect(() => {
     const fetchMovies = async () => {
       const movies = await movieService.index();
@@ -42,9 +39,7 @@ const App = () => {
     fetchMovies();
   }, []);
 
-
   const [reviews, setReviews] = useState([])
-
 
   useEffect(() => {
     const fetchAllReviews = async () => {
@@ -66,6 +61,7 @@ const App = () => {
             />
             <Route path="/mymovies" element={<MyMovies />} />
             <Route path="/watchlist" element={<WatchList />} />
+
           </>
         ) : (
           <Route path="/" element={<Landing />} />

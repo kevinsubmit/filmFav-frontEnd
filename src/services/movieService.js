@@ -23,7 +23,6 @@ const show = async (movieId) => {
   }
 }
 
-
 const showAllReviews = async () => {
   try {
     const res = await fetch(`${BASE_URL}/reviews/`, {
