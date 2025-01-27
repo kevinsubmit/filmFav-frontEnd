@@ -1,8 +1,6 @@
-import { useContext } from 'react';
 import { useState, useEffect, useContext } from 'react';
 import { AuthedUserContext } from '../../App';
 import { Link } from 'react-router-dom';
-import './NavBar.css';
 
 const NavBar = ({ handleSignout }) => {
   const BACKEND_URL = import.meta.env.VITE_BACKEND_SERVER_URL;
@@ -39,19 +37,17 @@ const NavBar = ({ handleSignout }) => {
     return () => clearTimeout(debounceTimeout);
   }, [searchQuery]);
 
-	return (
-		<>
-			{user ? (
-				<nav className='navbar'>
-					<ul className='nav-links'>
-						<li>
-							<Link to='/' className='nav-link'>
-								<img
-									src='https://github.com/bschlo/filmFav-frontEnd/blob/LandingPage/src/assets/Film%20Favorite.png?raw=true'
-									alt='logo'
-								/>
-							</Link>
-						</li>
+  return (
+    <>
+      {user ? (
+        <nav>
+          <ul>
+            <li><Link to="/">Home</Link></li>
+            <li><Link to='/movies'>Movies</Link></li>
+            <li><Link to="/myMovies">Watched Movies</Link></li>
+            <li><Link to='/watchList'>To Watch List</Link></li>
+            <li><Link to="" onClick={handleSignout}>Sign Out</Link></li>
+          </ul>
           <input
             type="text"
             value={searchQuery}
@@ -75,54 +71,18 @@ const NavBar = ({ handleSignout }) => {
                 <p>No results found</p>
               )}
             </div>
-						<li>
-							<Link to='/movies' className='nav-link'>
-								Movies
-							</Link>
-						</li>
-						<li>
-							<Link to='' onClick={handleSignout} className='nav-link'>
-								Sign Out
-							</Link>
-						</li>
-					</ul>
-				</nav>
-			) : (
-				<nav className='navbar'>
-					<ul className='nav-links'>
-						<li>
-							<Link to='/' className='nav-link'>
-								<img
-									src='https://github.com/bschlo/filmFav-frontEnd/blob/LandingPage/src/assets/Film%20Favorite.png?raw=true'
-									alt='logo'
-								/>
-							</Link>
-						</li>
-						<div className='navbar-tab'>
-							<li>
-								<Link to='/signin' className='nav-link-signin'>
-									Sign In
-								</Link>
-							</li>
-							<li>
-								<Link to='/signup' className='nav-link-signup'>
-									Sign Up
-								</Link>
-							</li>
-						</div>
-					</ul>
-
-					<div className='navbar-left'>
-						<input
-							type='text'
-							placeholder='Search'
-							className='search-bar-absolute'
-						/>
-					</div>
-				</nav>
-			)}
-		</>
-	);
+          )}
+        </nav>
+      ) : (
+        <nav>
+          <ul>
+            <li><Link to="/signin">Sign In</Link></li>
+            <li><Link to="/signup">Sign Up</Link></li>
+          </ul>
+        </nav>
+      )}
+    </>
+  );
 };
 
 export default NavBar;
