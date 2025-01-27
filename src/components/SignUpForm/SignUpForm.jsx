@@ -1,9 +1,8 @@
-// SignupForm.jsx
 
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import * as authService from '../../services/authService';
-import './signupForm.css';
+import './signupForm.css'
 
 const SignupForm = (props) => {
 	const navigate = useNavigate();
@@ -41,13 +40,14 @@ const SignupForm = (props) => {
 
 	return (
 		<main className='container'>
+            <div className='signup-content'>
 			{/* Left Section: Video */}
 			<section className='videoSection'>
-				<video className='video' autoPlay muted loop>
-					<source src='/public/videos/compressed_topgun.mp4' />
+				<video className='video-signup' autoPlay muted loop>
+					<source src='/public/videos/topgun.mp4' />
 				</video>
-				<video className='video' autoPlay muted loop>
-					<source src='/public/videos/compressed_Sonic3.mp4' />
+				<video className='video-signup' autoPlay muted loop>
+					<source src='/public/videos/sonic.mp4' />
 				</video>
 			</section>
 
@@ -93,6 +93,7 @@ const SignupForm = (props) => {
 					</div>
 				</form>
 			</section>
+            </div>
 		</main>
 	);
 };

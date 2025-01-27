@@ -38,13 +38,22 @@ h3 {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: 310px;
-	width: 310px;
-	margin-top: 100px;
-	margin-left: 750px;
+	height: 210px;
+	width: 210px;
+	margin: 0 auto; /* Centers the element horizontally */
 	background-color: #f2f4f8;
 	color: #007bff;
+    margin-bottom: 100px;
+    margin-top: 200px;
 }
+
+.logo_page_img {
+    height: 400px;
+    width: 400px;
+}
+
+
+
 .text-white {
 	color: white;
 }

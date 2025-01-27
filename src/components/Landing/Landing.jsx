@@ -5,42 +5,43 @@ import './Landing.css';
 const Landing = () => {
 	return (
 		<main>
-			<img className='logo_page' src='/public/logo_page.png' alt='logo' />
-
+            <div className='logo_page'>
+			<img className='logo_page_img' src='/public/logo_page.png' alt='logo' />
+            </div>
 			<h1>
-				Welcome to FilmFav – Your Go-To Hub for Discovering and Sharing Movies!
+				Welcome to FilmFav – Your Go-To Hub for Discovering and Rating Movies!
 			</h1>
 			<br />
 
 			<div className='video-row'>
 				<video
-					src='/public/videos/compressed_BEN 10 Live Action Movie – First Trailer   Tom Holland   Netflix (4K).mp4'
+					src='/public/videos/ben_ten.mp4'
 					autoPlay
 					loop
 					muted
 				/>
 				<video
-					src='/public/videos/compressed_Optimus vs Bumble.mp4'
+					src='/public/videos/transpormer.mp4'
 					autoPlay
 					loop
 					muted
 				/>
-				<video src='/public/videos/compressed_topgun.mp4' autoPlay loop muted />
-				<video src='/public/videos/compressed_Sonic3.mp4' autoPlay loop muted />
+				<video src='/public/videos/topgun.mp4' autoPlay loop muted />
+				<video src='/public/videos/sonic.mp4' autoPlay loop muted />
 				<video
-					src='/public/videos/compressed_Superman12.mp4'
-					autoPlay
-					loop
-					muted
-				/>
-				<video
-					src='/public/videos/compressed_Transpor_shorter.mp4'
+					src='/public/videos/superman12.mp4'
 					autoPlay
 					loop
 					muted
 				/>
 				<video
-					src='/public/videos/compressed_How To Train Your Dragon   Official Teaser Trailer.mp4'
+					src='/public/videos/transpormer.mp4'
+					autoPlay
+					loop
+					muted
+				/>
+				<video
+					src='/public/videos/how_to_train_your_dragon.mp4'
 					autoPlay
 					loop
 					muted
