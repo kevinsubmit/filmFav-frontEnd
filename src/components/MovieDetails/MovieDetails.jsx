@@ -13,7 +13,7 @@ const MovieDetails = () => {
   const user = useContext(AuthedUserContext);
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
-  const [reviews, setReviews] = useState(null);
+  const [reviews, setReviews] = useState([]);
   const [comments, setComments] = useState({});
   const [toggle, setToggle] = useState(false);
   console.log(reviews)
@@ -207,19 +207,22 @@ const MovieDetails = () => {
                     ).toLocaleDateString()}`}
                   </div>
                 </div>
+                <div>{review.text}</div>
                 {review.username === user && (
                   <>
+                  <div className="edit-review-btn">
                     <Link to={`/movies/${movie.id}/reviews/${review.id}/edit`}>
                       Edit Review
                     </Link>
+                    </div>
+                    <div className="delete-review-btn">
                     <button onClick={() => handleDeleteReview(review.id)}>
                       Delete Review
                     </button>
+                    </div>
                   </>
                 )}
-                <div>{review.text}</div>
               </div>
-              <div>
                 <div className="comments-label">Comments:</div>
                 <CommentForm
                   handleAddComment={(commentData) =>
@@ -255,7 +258,6 @@ const MovieDetails = () => {
                   </div>
                 ))}
               </div>
-            </div>
           ))}
         </div>
     </main>
