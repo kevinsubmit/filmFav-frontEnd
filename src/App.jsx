@@ -4,7 +4,7 @@ import NavBar from "./components/NavBar/NavBar";
 import SignupForm from "./components/SignUpForm/SignUpForm";
 import Landing from "./components/Landing/Landing";
 import Dashboard from "./components/Dashboard/Dashboard";
-import SignInForm from "./components/SignInForm/SignInForm";
+import SignInForm from "./components/SignInForm/SigninForm";
 import * as authService from "../src/services/authService";
 import { getUser } from "../src/services/authService";
 import MoviesList from "./components/MoviesList/MoviesList";
