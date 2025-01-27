@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import * as authService from '../../services/authService';
 import './SigninForm.css';
 
-const SigninForm = (props) => {
+const SignInForm = (props) => {
 	const navigate = useNavigate();
 	const [message, setMessage] = useState(['']);
 	const [formData, setFormData] = useState({
@@ -85,4 +85,4 @@ const SigninForm = (props) => {
 	);
 };
 
-export default SigninForm;
+export default SignInForm;

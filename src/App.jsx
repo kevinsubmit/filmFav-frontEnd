@@ -4,7 +4,7 @@ import NavBar from "./components/NavBar/NavBar";
 import SignupForm from "./components/SignUpForm/SignUpForm";
 import Landing from "./components/Landing/Landing";
 import Dashboard from "./components/Dashboard/Dashboard";
-import SigninForm from "./components/SignInForm/SigninForm";
+import SignInForm from "./components/SignInForm/SignInForm";
 import * as authService from "../src/services/authService";
 import { getUser } from "../src/services/authService";
 import MoviesList from "./components/MoviesList/MoviesList";
@@ -66,7 +66,7 @@ const App = () => {
           <Route path="/" element={<Landing />} />
         )}
         <Route path="/signup" element={<SignupForm setUser={setUser} />} />
-        <Route path="/signin" element={<SigninForm setUser={setUser} />} />
+        <Route path="/signin" element={<SignInForm setUser={setUser} />} />
       </Routes>
     </AuthedUserContext.Provider>
   );
