@@ -1,7 +1,7 @@
 import { Link } from "react-router";
 import React, { useState, useEffect } from 'react';
 import * as mineService from "../../services/mineService";
-import './WatchList.css';
+import './Watchlist.css';
 
 const WatchList = () => {
   const [watchList, setwatchList] = useState({});
