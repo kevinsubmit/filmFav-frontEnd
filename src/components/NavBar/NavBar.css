@@ -29,19 +29,25 @@ html {
   position: relative;
   flex-grow: 1;
   display: flex;
- /* Align the search bar to the right */
-  margin-top: 35px; /* Adjust to space the search bar below the navbar */
   justify-content: center;
   align-items: center;
+  margin-bottom: 20px;
 }
 
 /* Search bar styles */
 .input-searchbar {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
   border-radius: 25px;
   height: 30px;
   width: 300px;
   padding: 8px;
   font-size: 16px;
+  margin-top: 25px;
+  margin-bottom: 5px;
+  margin-right: 100px;
 }
 
 /* Position the search results directly below the search bar */
@@ -95,7 +101,7 @@ body {
 }
 
 .nav-links a:hover {
-  color: #ff9800;
+  color: #4f4e4d;
 }
 
 .search-results a {
@@ -111,4 +117,11 @@ body {
 .results-text {
 	width: 100%;
 	justify-content: center;
+}
+
+.navar-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
 }

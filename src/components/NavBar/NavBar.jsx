@@ -42,6 +42,7 @@ const NavBar = ({ handleSignout }) => {
 
   return (
     <>
+    <div className="navbar-container">
       {user ? (
         <nav className="navbar">
           <ul className="nav-links">
@@ -128,6 +129,7 @@ const NavBar = ({ handleSignout }) => {
           </ul>
         </nav>
       )}
+      </div>
     </>
   );
 };
