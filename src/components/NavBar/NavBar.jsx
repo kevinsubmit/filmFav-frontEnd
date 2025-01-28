@@ -54,6 +54,7 @@ const NavBar = ({ handleSignout }) => {
                 />
               </Link>
             </li>
+            <div className="navbar-tab">
             <div className="searchbar-container">
               <div>
                 <input
@@ -84,6 +85,7 @@ const NavBar = ({ handleSignout }) => {
                   )}
                 </div>
               )}
+            </div>
             </div>
             <li>
               <Link to="/movies" className="nav-link">

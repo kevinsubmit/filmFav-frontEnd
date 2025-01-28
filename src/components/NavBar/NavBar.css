@@ -114,6 +114,13 @@ body {
 	
 }
 
+.navbar-tab{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+}
+
 .results-text {
 	width: 100%;
 	justify-content: center;
