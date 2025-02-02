@@ -10,16 +10,14 @@
 	margin: 0px;
 }
 
-.FormAndVideos{
+.FormAndVideos {
 	display: flex;
 	flex-direction: row;
 	gap: 200px;
 	justify-content: center;
 	align-items: center;
 	align-content: center;
-
 }
-
 
 label {
 	color: white;
@@ -36,7 +34,6 @@ label {
 
 .video {
 	height: 100%;
-
 }
 .videoSection .video:nth-child(1) {
 	margin-bottom: 50px;
@@ -44,7 +41,6 @@ label {
 .videoSection .video:nth-child(2) {
 	margin-top: -20px;
 }
-
 
 form {
 	border: 3px solid #f1f1f1;
@@ -57,7 +53,7 @@ form {
 }
 
 .formTitle1 {
-	margin-top: 100px;
+	margin-top: 170px;
 	font-size: 45px;
 	color: #fff;
 	text-align: center;
@@ -66,7 +62,8 @@ form {
 	text-align: right;
 	position: absolute;
 	top: 20px;
-	right: -80px;
+	right: 440px;
+	margin-bottom: 5px;
 }
 .formSection {
 	flex: 1;
@@ -79,20 +76,19 @@ form {
 }
 
 .signin-form {
-	display: flex
-	;
-		align-items: center;
-		margin: 30px auto;
-		padding: 20px;
-		width: 600px;
-		background-color: #1a1a1a;
-		border-radius: 10px;
-		box-shadow: 0 0 5px 2px rgba(255, 255, 255, 0.8);
-		display: flex;
-		flex-direction: column;
-		gap: 15px;
-		color: #f0f0f0;
-		justify-content: center;
+	display: flex;
+	align-items: center;
+	margin: 30px auto;
+	padding: 20px;
+	width: 500px;
+	background-color: #3f3d3d;
+	border-radius: 10px;
+	box-shadow: 0 0 5px 2px rgba(255, 255, 255, 0.8);
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+	color: #f0f0f0;
+	justify-content: center;
 }
 form label {
 	display: block;
@@ -103,11 +99,11 @@ form label {
 }
 
 form input {
-	width: 100%;
+	width: 250px;
 	padding: 12px;
 	margin-bottom: 16px;
 	border: 1px solid #ccc;
-	border-radius: 5px;
+	border-radius: 15px;
 	font-size: 16px;
 }
 
@@ -115,12 +111,12 @@ form button {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	font-family: "Jersey 15", sans-serif;
+	font-family: 'Jersey 15', sans-serif;
 	margin-bottom: 20px;
 	margin-top: 20px;
 	display: flex;
 	justify-content: center;
-	width: 100%;
+	width: 180px;
 	padding: 10px;
 	border-radius: 20px;
 	background-color: rgb(64, 61, 61);
@@ -135,17 +131,19 @@ p {
 	text-align: center;
 }
 
-span {
+.signup {
 	font-style: italic;
 	font-weight: 600;
 	font-size: small;
 }
 .signup-link {
 	margin-top: 25px;
+	color: #fff;
 }
 
 button:hover {
 	opacity: 0.8;
+	color: rgb(3, 3, 42);
 }
 
 .videoSection {

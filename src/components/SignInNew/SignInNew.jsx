@@ -34,56 +34,64 @@ const SigninForm = (props) => {
 
 	return (
 		<main className='container'>
-			<h1 className='formTitle'>Sign In</h1>
+			<h1 className='formTitle1'>Sign In</h1>
 			<div className='FormAndVideos'>
-			<section className='formSection'>
-				<form autoComplete='off' onSubmit={handleSubmit} className='signin-form'>
-					<div >
-						<div className='Username'>
-						<label htmlFor='email' className='username'>Username:</label>
+				<section className='formSection'>
+					<form
+						autoComplete='off'
+						onSubmit={handleSubmit}
+						className='signin-form'
+					>
+						<div>
+							<div className='Username'>
+								<label htmlFor='email' className='username'>
+									Username:
+								</label>
+							</div>
+							<input
+								type='text'
+								autoComplete='off'
+								id='username'
+								value={formData.username}
+								name='username'
+								onChange={handleChange}
+							/>
 						</div>
-						<input
-							type='text'
-							autoComplete='off'
-							id='username'
-							value={formData.username}
-							name='username'
-							onChange={handleChange}
-						/>
-					</div>
-					<div>
-						<label htmlFor='password' className='password'>Password:</label>
-						<input
-							type='password'
-							autoComplete='off'
-							id='password'
-							value={formData.password}
-							name='password'
-							onChange={handleChange}
-						/>
-					</div>
-					<div className='form-sign'>
-						<button>Log In</button>
-						<Link to='/'>
-							<button>Cancel</button>
-						</Link>
-					</div>
-					<p className='signup-link'>
-						Don't have an account? {''}
-						<span>
-							<Link to='/signup'>Sign up here</Link>
-						</span>
-					</p>
-				</form>
-			</section>
-			<section className='videoSection'>
-				<video className='video' autoPlay muted loop>
-					<source src='/videos/superman12.mp4' />
-				</video>
-				<video className='video' autoPlay muted loop>
-					<source src='/videos/ben_ten.mp4' />
-				</video>
-			</section>
+						<div>
+							<label htmlFor='password' className='password'>
+								Password:
+							</label>
+							<input
+								type='password'
+								autoComplete='off'
+								id='password'
+								value={formData.password}
+								name='password'
+								onChange={handleChange}
+							/>
+						</div>
+						<div className='form-sign'>
+							<button>Log In</button>
+							<Link to='/'>
+								<button>Cancel</button>
+							</Link>
+						</div>
+						<p className='signup-link'>
+							Don't have an account? {''}
+							<span>
+								<Link to='/signup'>Sign up here</Link>
+							</span>
+						</p>
+					</form>
+				</section>
+				<section className='videoSection'>
+					<video className='video' autoPlay muted loop>
+						<source src='/videos/superman12.mp4' />
+					</video>
+					<video className='video' autoPlay muted loop>
+						<source src='/videos/ben_ten.mp4' />
+					</video>
+				</section>
 			</div>
 		</main>
 	);
