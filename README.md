@@ -125,3 +125,4 @@ FilmFav makes it simple to rate movies you've watched and find great recommendat
 
 - Stack Overflow, ChatGPT, The Movie Database (TMDB), and GA lesson material.
 # filmFav_frontend
+# filmFav_frontend2
