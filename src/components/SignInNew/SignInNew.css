@@ -138,12 +138,13 @@ p {
 }
 .signup-link {
 	margin-top: 25px;
-	color: #fff;
+	/* color: #fff; */
+	color: orange;
 }
 
 button:hover {
 	opacity: 0.8;
-	color: rgb(3, 3, 42);
+	color: rgb(19, 19, 131);
 }
 
 .videoSection {
